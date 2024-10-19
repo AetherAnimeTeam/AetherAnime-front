@@ -1,0 +1,38 @@
+.Anime {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    margin-top: 15px;
+    margin-left: 15px;
+}
+
+.Anime img {
+    width: 200px;
+    height: auto;
+}
+
+.AnimeText {
+    margin-left: 15px;
+    display: flex;
+    flex-direction: column;
+}
+
+.AnimeText h1 {
+    font-size: 40px;
+    margin-top: 0;
+}
+
+.AnimeText p {
+    font-size: 12px;
+    margin-top: 0;
+    max-width: 50vw;
+}
+
+@media (max-width: 300px) {
+    .Anime img {
+        width: 100px;
+    }
+    .AnimeText h1 {
+        font-size: 12px;
+    }
+}

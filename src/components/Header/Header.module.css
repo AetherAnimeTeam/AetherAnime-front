@@ -1,0 +1,39 @@
+.Header {
+    display: flex;
+    justify-content: space-between;
+    max-width: 3500px;
+    align-items: center;
+    background-color: #2d2d2d;
+    padding: 10px;
+    color: white;
+}
+
+.Logo:visited, .Logo:active, .Logo:hover, .Logo {
+    border:none;
+    outline:none;
+    text-decoration:none;
+    text-underline-mode: none;
+    color:inherit;
+    -webkit-tap-highlight-color: white;
+    font-size: 34px;
+}
+
+.Routes {
+    display: flex;
+}
+
+.Routes .route {
+    font-size: 16px;
+    border:none;
+    outline:none;
+    text-decoration:none;
+    text-underline-mode: none;
+    color:inherit;
+    margin-right: 5px;
+}
+
+@media (max-width: 300px) {
+    .Logo:visited, .Logo:active, .Logo:hover, .Logo {
+        font-size: 16px;
+    }
+}

@@ -1,0 +1,13 @@
+.Footer {
+    display: flex;
+    background-color: #2d2d2d;
+    justify-content: center;
+    max-width: 3500px;
+    /*flex-direction: column;*/
+    align-content: flex-end;
+    margin-top: auto;
+}
+
+.Footer p {
+    color: white;
+}

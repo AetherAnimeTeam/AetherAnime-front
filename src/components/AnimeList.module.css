@@ -1,0 +1,49 @@
+.AnimeListContainer {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    overflow: hidden;
+}
+
+.AnimeList {
+    display: flex;
+    flex-direction: row;
+
+    width: 100%;
+    /*justify-content: space-between;*/
+
+    scroll-behavior: smooth;
+    overflow-x: scroll;
+    scrollbar-width: none;
+}
+
+/* Disable scrollbar for WebKit browsers */
+.element::-webkit-scrollbar {
+    display: none;
+}
+
+
+.Arrow {
+    /*position: absolute;*/
+    /*top: 50%;*/
+    /*transform: translateY(-50%); !* Центрируем стрелки по вертикали *!*/
+    background-color: rgba(0, 0, 0, 0.5);
+    color: white;
+    border: none;
+    /*padding: 10px;*/
+    cursor: pointer;
+    /*z-index: 10; !* Устанавливаем высокий z-index, чтобы стрелки были поверх изображений *!*/
+}
+
+.Arrow.left {
+    /*left: 0;*/
+}
+
+.Arrow.right {
+    /*right: 0;*/
+}
+
+.Arrow:hover {
+    background-color: rgba(0, 0, 0, 0.8); /* Изменяем цвет при наведении */
+}
