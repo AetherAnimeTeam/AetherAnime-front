@@ -1,7 +1,7 @@
 .Header {
     display: flex;
     justify-content: space-between;
-    max-width: 3500px;
+    /*width: 100%;*/
     align-items: center;
     background-color: #2d2d2d;
     padding: 10px;
@@ -32,7 +32,7 @@
     margin-right: 5px;
 }
 
-@media (max-width: 300px) {
+@media (max-width: 500px) {
     .Logo:visited, .Logo:active, .Logo:hover, .Logo {
         font-size: 16px;
     }

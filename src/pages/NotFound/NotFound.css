@@ -1,0 +1,15 @@
+.NotFound {
+    display: flex;
+    flex-direction: column;
+    margin-top: 15px;
+    align-items: center;
+}
+
+.NotFound img {
+    width: 150px;
+    height: auto;
+}
+
+.NotFound h1 {
+    text-align: center;
+}

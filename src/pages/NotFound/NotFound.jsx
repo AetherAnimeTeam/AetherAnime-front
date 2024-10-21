@@ -1,9 +1,12 @@
 import React from 'react';
+import "./NotFound.css"
 
 const NotFound = () => {
     return (
-        <div>
-            <h1> 404. Page not found</h1>
+        <div className="NotFound">
+            <img src={`${process.env.PUBLIC_URL}/404.png`} alt="aa"/>
+
+            <h1>Упс, такой страницы не существует</h1>
         </div>
     );
 };
