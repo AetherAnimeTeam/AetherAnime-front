@@ -14,9 +14,9 @@ function App() {
                 <Header/>
 
                 <Routes>
-                    <Route path="*" element={ <NotFound/> } />
                     <Route path="/" element={ <Home/> } />
                     <Route path="/anime/:id" element={ <Anime/> } />
+                    <Route path="*" element={ <NotFound/> } />
                 </Routes>
 
                 <Footer/>
