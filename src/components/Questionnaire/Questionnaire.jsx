@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import './Questionnaire.css';
 
 const Questionnaire = ({ isOpen, onClose }) => {
+    const [error, setError] = useState(false);
   const [step, setStep] = useState(0);
   const [answers, setAnswers] = useState({});
   const [submitted, setSubmitted] = useState(false);
@@ -16,9 +17,15 @@ const Questionnaire = ({ isOpen, onClose }) => {
 
   const handleAnswerChange = (e) => {
     setAnswers({ ...answers, [step]: e.target.value });
+    setError(false);
   };
 
   const handleNext = () => {
+    console.log(answers[step])
+    if (answers[step]?.trim() === undefined) {
+      setError(true);
+      return;
+    }
     if (step < questions.length - 1) {
       setStep(step + 1);
     } else {
@@ -30,6 +37,7 @@ const Questionnaire = ({ isOpen, onClose }) => {
     setStep(0);
     setAnswers({});
     setSubmitted(false);
+    setError(false);
   };
 
   if (!isOpen) return null;
@@ -62,6 +70,7 @@ const Questionnaire = ({ isOpen, onClose }) => {
               placeholder="Ваш ответ"
               onChange={handleAnswerChange}
             />
+            {error && <p className="error">Пожалуйста, введите ответ.</p>}
             <div className="modal-buttons">
               <button className="modal-btn" onClick={handleNext}>
                 {step < questions.length - 1 ? 'Далее' : 'Завершить'}
