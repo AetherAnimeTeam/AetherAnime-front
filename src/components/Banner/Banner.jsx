@@ -3,23 +3,14 @@ import classes from "./Banner.module.css"
 import Questionnaire from "../Questionnaire/Questionnaire";
 
 const Banner = () => {
-    const [isModalOpen, setIsModalOpen] = useState(false);
-
-    const openModal = () => {
-        setIsModalOpen(true);
-    };
-
-    const closeModal = () => {
-        setIsModalOpen(false);
-    };
+      const [isModalOpen, setModalOpen] = useState(false);
 
     return (
         <div className={classes.Banner}>
             <p>Пройдите опрос и помогите улучшить наши сервисы!</p>
 
-            <button onClick={openModal}>Пройти опрос</button>
-            {isModalOpen && <Questionnaire closeModal={closeModal} />}
-
+            <button onClick={() => setModalOpen(true)}>Пройти опрос</button>
+            <Questionnaire isOpen={isModalOpen} onClose={() => setModalOpen(false)} />
             <img src={process.env.PUBLIC_URL+"/banner.jpg"} alt="banner"/>
         </div>
     );

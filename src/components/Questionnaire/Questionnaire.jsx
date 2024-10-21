@@ -1,75 +1,78 @@
 import React, { useState } from 'react';
-import classes from "./Questionnaire.module.css"
+import './Questionnaire.css';
 
+const Questionnaire = ({ isOpen, onClose }) => {
+  const [step, setStep] = useState(0);
+  const [answers, setAnswers] = useState({});
+  const [submitted, setSubmitted] = useState(false);
 
-// TODO: REFACTOR
-const Questionnaire = ({ closeModal }) => {
-    const [step, setStep] = useState(0);
-    const [answers, setAnswers] = useState([]);
-    const [submitted, setSubmitted] = useState(false);
+  const questions = [
+    'Какое ваше любимое аниме?',
+    'Какой жанр аниме вам больше нравится?',
+    'Кто ваш любимый аниме-персонаж?',
+    'Какой последний аниме-сериал вы смотрели?',
+    'Какое аниме вы бы порекомендовали другим?'
+  ];
 
-    const questions = [
-        'Кто твой любимый персонаж аниме?',
-        'Какое аниме ты считаешь лучшим?',
-        'Какой жанр аниме тебе нравится больше всего?',
-        'Какое аниме ты смотрел(а) последним?',
-        'Сколько времени ты обычно уделяешь просмотру аниме в неделю?',
-    ];
+  const handleAnswerChange = (e) => {
+    setAnswers({ ...answers, [step]: e.target.value });
+  };
 
-    const handleAnswerChange = (event) => {
-        const newAnswers = [...answers];
-        newAnswers[step] = event.target.value;
-        setAnswers(newAnswers);
-    };
+  const handleNext = () => {
+    if (step < questions.length - 1) {
+      setStep(step + 1);
+    } else {
+      setSubmitted(true);
+    }
+  };
 
-    const handleSubmit = async () => {
-        setSubmitted(true);
-    };
+  const handleReset = () => {
+    setStep(0);
+    setAnswers({});
+    setSubmitted(false);
+  };
 
-    const handleNextQuestion = () => {
-        if (step < questions.length - 1) {
-            setStep(step + 1);
-        } else {
-            handleSubmit();
-        }
-    };
+  if (!isOpen) return null;
 
-    return (
-        <div className={classes.Modal}>
-            <div className={classes.ModalContent}>
-                {submitted ? (
-                    <div>
-                        <h2>Ваши ответы:</h2>
-                            {answers.map((answer, index) => (
-                                <p key={index}>
-                                    {questions[index]} {answer}
-                                </p>
-                            ))}
-                        <button onClick={closeModal}>Закрыть</button>
-                    </div>
-                ) : (
-                    <div>
-                        <h2>Аниме Опрос</h2>
-                        <p>{questions[step]}</p>
-                        <input
-                            type="text"
-                            value={answers[step] || ''}
-                            onChange={handleAnswerChange}
-                            placeholder="Ваш ответ"
-                        />
-                        <div>
-                            {step < questions.length - 1 ? (
-                                <button className={classes.next} onClick={handleNextQuestion}>Следующий вопрос</button>
-                            ) : (
-                                <button className={classes.next} onClick={handleSubmit}>Завершить опрос</button>
-                            )}
-                            <button onClick={closeModal}>Отмена</button>
-                        </div>
-                    </div>
-                )}
+  return (
+    <div className="modal-overlay">
+      <div className="modal-content">
+        {submitted ? (
+          <>
+            <h2>Результаты опроса</h2>
+            <ul>
+              {questions.map((question, index) => (
+                <li key={index}>
+                  <strong>{question}</strong> <br />Ответ: {answers[index]}
+                </li>
+              ))}
+            </ul>
+            <div className="modal-buttons">
+              <button onClick={handleReset}>Пройти опрос заново</button>
+              <button onClick={onClose}>Закрыть</button>
             </div>
-        </div>
-    );
+          </>
+        ) : (
+          <>
+            <h2>Аниме опрос</h2>
+            <p>{questions[step]}</p>
+            <input
+              type="text"
+              value={answers[step] || ''}
+              placeholder="Ваш ответ"
+              onChange={handleAnswerChange}
+            />
+            <div className="modal-buttons">
+              <button className="modal-btn" onClick={handleNext}>
+                {step < questions.length - 1 ? 'Далее' : 'Завершить'}
+              </button>
+              <button className="close" onClick={onClose}>Закрыть</button>
+            </div>
+          </>
+        )}
+      </div>
+    </div>
+  );
 };
 
 export default Questionnaire;
