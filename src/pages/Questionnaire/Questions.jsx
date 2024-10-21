@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
-import './Questionnaire.css';
+import './Questions.css';
+import {Link} from "react-router-dom";
 
-const Questionnaire = ({ isOpen, onClose }) => {
+const Questions = () => {
     const [error, setError] = useState(false);
   const [step, setStep] = useState(0);
   const [answers, setAnswers] = useState({});
@@ -40,8 +41,6 @@ const Questionnaire = ({ isOpen, onClose }) => {
     setError(false);
   };
 
-  if (!isOpen) return null;
-
   return (
     <div className="modal-overlay">
       <div className="modal-content">
@@ -56,18 +55,20 @@ const Questionnaire = ({ isOpen, onClose }) => {
               ))}
             </ul>
             <div className="modal-buttons">
-              <button onClick={handleReset}>Пройти опрос заново</button>
-              <button onClick={onClose}>Закрыть</button>
+              {/*<button className="modal-btn" onClick={handleReset}>Пройти заново</button>*/}
+              {/*<Link className="close" to="/">Закрыть</Link>*/}
+              <button className="modal-btn" onClick={handleNext}>Еще раз!</button>
+              <Link className="close" to="/">Закрыть</Link>
             </div>
           </>
         ) : (
-          <>
-            <h2>Аниме опрос</h2>
-            <p>{questions[step]}</p>
-            <input
-              type="text"
-              value={answers[step] || ''}
-              placeholder="Ваш ответ"
+            <>
+              <h2>Аниме опрос</h2>
+              <p>{questions[step]}</p>
+              <input
+                  type="text"
+                  value={answers[step] || ''}
+                  placeholder="Ваш ответ"
               onChange={handleAnswerChange}
             />
             {error && <p className="error">Пожалуйста, введите ответ.</p>}
@@ -75,7 +76,7 @@ const Questionnaire = ({ isOpen, onClose }) => {
               <button className="modal-btn" onClick={handleNext}>
                 {step < questions.length - 1 ? 'Далее' : 'Завершить'}
               </button>
-              <button className="close" onClick={onClose}>Закрыть</button>
+              <Link className="close" to="/">Закрыть</Link>
             </div>
           </>
         )}
@@ -84,4 +85,4 @@ const Questionnaire = ({ isOpen, onClose }) => {
   );
 };
 
-export default Questionnaire;
+export default Questions;

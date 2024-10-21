@@ -20,6 +20,7 @@
 .AnimeText h1 {
     font-size: 40px;
     margin-top: 0;
+    text-align: center;
 }
 
 .AnimeText p {
@@ -30,10 +31,22 @@
 }
 
 @media (max-width: 500px) {
+    .Anime {
+        flex-direction: column;
+        justify-content: space-between;
+        align-items: center;
+    }
     .Anime img {
-        width: 100px;
+        width: 150px;
     }
     .AnimeText h1 {
         font-size: 12px;
+
+        margin-top: 15px;
+    }
+
+    .AnimeText p {
+        text-align: center;
+        margin-right: 0;
     }
 }

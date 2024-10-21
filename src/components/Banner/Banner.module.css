@@ -26,7 +26,7 @@
     z-index: 1;
 }
 
-.Banner button {
+.link {
     position: absolute;
     background: rgba(0, 0, 0, 0.5);
     align-self: end;
@@ -38,6 +38,8 @@
     padding: 10px;
     border-radius: 4px;
     z-index: 1;
+    text-underline: none;
+    text-decoration: none;
 }
 
 @media (max-width: 500px) {
