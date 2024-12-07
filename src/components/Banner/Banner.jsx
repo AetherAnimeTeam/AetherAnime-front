@@ -1,14 +1,15 @@
 import React from 'react';
-import classes from "./Banner.module.css"
+import cls from "./Banner.module.css"
 import {Link} from "react-router-dom";
+import Button from "../UI/Button/Button";
 
 const Banner = () => {
     return (
-        <div className={classes.Banner}>
-            <p>Пройдите опрос и помогите улучшить наши сервисы!</p>
-
-            <Link className={classes.link} to="/questions">Пройти опрос</Link>
-            <img src={process.env.PUBLIC_URL+"/banner.jpg"} alt="banner"/>
+        <div className={cls.Banner}>
+            {/*<Link to="/">*/}
+            {/*    <Button />*/}
+            {/*</Link>*/}
+            <img src={require("../../assets/images/banner.png") || ''} alt="banner"/>
         </div>
     );
 };

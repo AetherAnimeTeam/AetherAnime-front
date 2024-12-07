@@ -2,22 +2,63 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    margin-left: 15px;
-    max-width: 150px;
+    margin-left: 8px;
+    margin-right: 8px;
+    max-width: 224px;
+    position: relative;
+}
+
+.AnimeItem:hover {
+    transform: scale(1.05);
+    transition: transform .3s;
 }
 
 .AnimeItem img {
-    width: 150px;
-    height: auto;
-    /*z-index: 1;*/
+    width: 224px;
+    height: 316px;
+    max-height: 316px;
+    object-fit: cover;
+    border-radius: 8px;
+    z-index: 1;
 }
 
-.AnimeItem:hover img {
-    transform: scale(1.1);
-}
-
-.AnimeItem p {
+.AnimeItem p:not(.Score p) {
     text-align: center;
     margin-top: 2px;
+    color: white;
+    font-family: "Inter", monospace;
+    font-size: 16px;
+    font-weight: 500;
+
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    overflow: hidden;
+    -webkit-box-orient: vertical;
+}
+
+.Score {
+    display: flex;
+    align-self: flex-start;
+    position: absolute;
+    top: 4px;
+    left: 4px;
+    flex-direction: row;
+    padding: 2px 8px 2px 6px;
+    width: 48px;
+    height: 20px;
+    background: rgba(194, 194, 194, 0.5);
+    backdrop-filter: blur(1.5px);
+    border-radius: 8px;
+    border: 1px solid rgba(194, 194, 194, 0.1);
+    justify-content: center;
+    z-index: 2;
+}
+
+.Score p {
+    color: white;
+    font-family: "Inter", monospace;
     font-size: 12px;
+    font-weight: 600;
+    margin-left: 5px;
+    margin-top: 3px;
 }

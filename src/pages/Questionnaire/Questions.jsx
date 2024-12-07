@@ -55,8 +55,6 @@ const Questions = () => {
               ))}
             </ul>
             <div className="modal-buttons">
-              {/*<button className="modal-btn" onClick={handleReset}>Пройти заново</button>*/}
-              {/*<Link className="close" to="/">Закрыть</Link>*/}
               <button className="modal-btn" onClick={handleNext}>Еще раз!</button>
               <Link className="close" to="/">Закрыть</Link>
             </div>

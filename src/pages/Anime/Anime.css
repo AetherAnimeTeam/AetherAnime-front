@@ -2,32 +2,133 @@
     display: flex;
     flex-direction: row;
     align-items: flex-start;
-    margin-top: 15px;
-    margin-left: 15px;
+    margin: 15px;
 }
 
-.Anime img {
-    width: 200px;
-    height: auto;
+.expand_description {
+    font-size: 18px;
+    font-weight: 400;
+    font-family: Inter, monospace;
+    color: rgba(47, 128, 237, 1);
+    cursor: pointer;
+    margin: 0;
 }
 
-.AnimeText {
-    margin-left: 15px;
+.Media {
     display: flex;
     flex-direction: column;
 }
 
-.AnimeText h1 {
-    font-size: 40px;
-    margin-top: 0;
-    text-align: center;
+.Rating {
+    display: flex;
+    flex-direction: column;
+    width: 200px;
+    height: auto;
+    padding: 0;
+    gap: 8px;
 }
 
-.AnimeText p {
-    font-size: 12px;
+.Stars {
+    display: flex;
+    flex-direction: row;
+}
+
+.Star {
+    width: 20px;
+    height: 20px;
+    margin-right: 4px;
+}
+
+.Rating p {
+    font-family: Inter, monospace;
+    font-weight: 400;
+    font-size: 27px;
+    color: rgba(134, 134, 134, 1);
+    margin: 0;
+}
+
+.Rating h2 {
+    font-family: Inter, monospace;
+    font-weight: 600;
+    font-size: 48px;
+    color: white;
+    margin: 0;
+}
+
+.Info {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    margin-left: 15px;
+    margin-right: 15px;
+}
+
+.Media img {
+    width: 350px;
+    height: 520px;
+    border-radius: 16px;
+}
+
+.Details {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 100%;
+    margin-top: 24px;
+}
+
+.Details-block {
+    display: flex;
+    flex-direction: column;
+    gap: 4px
+}
+
+.Detail-name {
+    font-size: 16px;
+    font-family: Inter, monospace;
+    font-weight: 400;
+    color: rgba(134, 134, 134, 1);
+    margin: 0;
+}
+
+.Detail-value {
+    font-size: 16px;
+    font-family: Inter, monospace;
+    font-weight: 400;
+    color: white;
+    margin: 0 0 0 15px;
+}
+
+.Info h1 {
+    font-size: 32px;
+    margin-top: 0;
+    text-align: start;
+    font-family: "Inter", monospace;
+    color: white;
+    width: 100%;
+}
+
+.description {
+    background: linear-gradient(to bottom, rgba(255, 255, 255, 1), rgba(0, 0, 0, 0));
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+
+    /*display: -webkit-box;*/
+    /*-webkit-line-clamp: 6;*/
+    /*overflow: hidden;*/
+    /*-webkit-box-orient: vertical;*/
+
+    transition: max-height 0.5s ease-out;
+
+    font-size: 18px;
+    line-height: 27px;
     margin-top: 0;
     margin-right: 15px;
-    max-width: 50vw;
+    width: 100%;
+
+    font-family: "Inter", monospace;
 }
 
 @media (max-width: 500px) {
@@ -39,13 +140,13 @@
     .Anime img {
         width: 150px;
     }
-    .AnimeText h1 {
+    .Text h1 {
         font-size: 12px;
 
         margin-top: 15px;
     }
 
-    .AnimeText p {
+    .Text p {
         text-align: center;
         margin-right: 0;
     }
