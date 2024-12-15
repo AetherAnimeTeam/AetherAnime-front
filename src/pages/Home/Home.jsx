@@ -1,41 +1,31 @@
-import {useEffect, useState, React, useCallback,} from 'react';
+import {React, useMemo } from 'react';
 import AnimeList from "../../components/AnimeList";
-import "./Home.css"
-import {useFetching} from "../../hooks/useFetching";
-import AnimeService from "../../API/AnimeService";
+import "./Home.css";
+import { fetcher, getPopular } from "../../API/AnimeService";
 import Banner from "../../components/Banner/Banner";
+import useSWR from "swr";
 
 const Home = () => {
-    const [popularAnime, setPopularAnime] = useState([])
-    const [fetchPopular, isPopularLoading, popularError] = useFetching(useCallback(
-        async (limit = 10, page = 1) => {
-            const animes = await AnimeService.getPopular(limit, page)
-            setPopularAnime(() => animes.data)
-        }, [])
-    )
-    const [announcedAnime, setAnnouncedAnime] = useState([])
-    const [fetchAnnounced, isLoading, announcedError] = useFetching(useCallback(
-        async (limit = 10, page = 1) => {
-            const animes = await AnimeService.getPopular(limit, page, "anons")
-            setAnnouncedAnime(() => animes.data)
-        }, [])
-    )
+  const popularKey = useMemo(() => getPopular(10, 1), []);
+  const announcedKey = useMemo(() => getPopular(10, 1, "anons"), []);
 
-    useEffect(()=> {
-        fetchPopular();
-        fetchAnnounced();
-    }, [fetchPopular, fetchAnnounced]);
+  const { data: popularAnime, error: popularAnimeError } = useSWR(popularKey, fetcher);
+  const { data: announcedAnime, error: announcedAnimeError } = useSWR(announcedKey, fetcher);
 
-    return (
-        <div>
-            <Banner />
+  if (popularAnimeError || announcedAnimeError) return <div>Failed to load</div>;
+  if (!popularAnime || !announcedAnime) return <div>Loading...</div>;
 
-            <h1 className="AnimeListType">Популярное</h1>
-            <AnimeList animes={popularAnime}/>
-            <h1 className="AnimeListType">Анонсированы</h1>
-            <AnimeList animes={announcedAnime}/>
-        </div>
-    );
+  return (
+    <div>
+      <Banner />
+
+      <h1 className="AnimeListType">Популярное</h1>
+      <AnimeList animes={popularAnime} />
+
+      <h1 className="AnimeListType">Анонсированы</h1>
+      <AnimeList animes={announcedAnime} />
+    </div>
+  );
 };
 
 export default Home;
