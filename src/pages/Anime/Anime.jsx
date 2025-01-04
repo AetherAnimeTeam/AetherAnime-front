@@ -7,6 +7,7 @@ import {ReactComponent as Star} from "../../assets/icons/star_filled.svg";
 
 const Anime = () => {
     const params = useParams()
+    const descriptionRegex = /(\[character=\d+]|\[\/character])/g;
 
     const ageRatingDict = {g: "0+", pg: "0+", pg_13: "13+", r: "17+", nc_17: "18+"}
 
@@ -16,7 +17,6 @@ const Anime = () => {
     const stars = [...Array(10)].map((_, index) => (
         <Star key={index} className="Star" />
     ));
-
     if(metaError) return <div>Error</div>
     if(!animeMeta) return <div>Loading...</div>
 
@@ -28,7 +28,7 @@ const Anime = () => {
             <div className="Info">
                 <h1>{animeMeta.name_ru}</h1>
                 <p className="description">
-                    {animeMeta.description ? animeMeta.description : "Описание отсутствует!"}
+                    {animeMeta.description ? animeMeta.description.replace(descriptionRegex, "") : "Описание отсутствует!"}
                 </p>
 
                 <div className="Details">

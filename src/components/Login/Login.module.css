@@ -1,0 +1,106 @@
+.Container {
+    width: 400px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.Container input {
+    width: 352px;
+    height: 50px;
+    border-radius: 16px;
+    border: none;
+    background: rgba(69, 69, 69, 0.8);
+    color: white;
+    margin-top: 8px;
+    margin-bottom: 0;
+    font-family: Inter, monospace;
+    text-align: start;
+    box-sizing: border-box;
+    padding-left: 24px;
+}
+
+.Container input:focus {
+  outline: none;
+  border: 2px solid rgba(47, 128, 237, 1);
+}
+
+.Container button {
+    width: 352px;
+    height: 50px;
+    margin-top: 16px;
+    background: rgba(47, 128, 237, 1);
+    text-align: center;
+    font-family: Inter, monospace;
+    font-size: 20px;
+    font-weight: 500;
+    line-height: 24px;
+    color: white;
+    border: none;
+    border-radius: 16px;
+}
+
+.clickableText {
+    font-family: Inter, monospace;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 22px;
+    text-align: left;
+    text-decoration-line: underline;
+    text-decoration-style: solid;
+    text-underline-position: from-font;
+    text-decoration-skip-ink: none;
+    color: rgba(47, 128, 237, 1);
+    cursor: pointer;
+}
+
+.whiteClickableText {
+    font-family: Inter, monospace;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 22px;
+    text-align: left;
+    text-decoration-line: underline;
+    text-decoration-style: solid;
+    text-underline-position: from-font;
+    text-decoration-skip-ink: none;
+    color: white;
+    cursor: pointer;
+}
+
+.Other_login_methods {
+    color: rgba(134, 134, 134, 1);
+    font-family: Inter, monospace;
+    font-weight: 400;
+    font-size: 15px;
+    align-items: center;
+}
+
+
+.Other_login_methods:before{
+    content: " ";
+    background: rgba(134, 134, 134, 1);
+    width: 80px;
+    height: 1px;
+    right: 30px;
+    position: absolute;
+    margin: 10px 0;
+}
+
+.Other_login_methods:after{
+    content: " ";
+    background: rgba(134, 134, 134, 1);
+    width: 80px;
+    height: 1px;
+    left: 30px;
+    position: absolute;
+    margin: 10px 0;
+}
+
+.SocialNetworks {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 24px;
+}

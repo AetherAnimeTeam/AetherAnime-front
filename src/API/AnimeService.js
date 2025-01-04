@@ -23,16 +23,16 @@ const backendUrl = "http://127.0.0.1:8000";
 // Generic fetcher function for SWR
 export const fetcher = async (url) => {
   const response = await axios.get(url);
-  return response.data; // Return the data directly
+  return response.data;
 };
 
 // Service functions for SWR
 export const getPopular = (limit = 10, page = 1, status = "latest") => {
   const url = `${backendUrl}/popular/?limit=${limit}&page=${page}&status=${status}`;
-  return url; // Return the URL as the key for SWR
+  return url;
 };
 
 export const getDetailed = (anime_id) => {
   const url = `${backendUrl}/detailed/?anime_id=${parseInt(anime_id)}`;
-  return url; // Return the URL as the key for SWR
+  return url;
 };
