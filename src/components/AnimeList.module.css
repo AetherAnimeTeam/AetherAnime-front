@@ -5,6 +5,7 @@
     overflow: hidden;
     width: 100%;
     height: auto;
+    margin-left: 24px;
 }
 
 .AnimeList {
@@ -16,6 +17,7 @@
     overflow-y: hidden;
     scrollbar-width: none;
     padding-top: 10px;
+    gap: 8px
 }
 
 /* Disable scrollbar for WebKit browsers */

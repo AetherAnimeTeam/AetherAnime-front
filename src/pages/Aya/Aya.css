@@ -1,0 +1,26 @@
+.Aya {
+    display: flex;
+    flex-direction: column;
+    margin-top: 15px;
+    align-items: center;
+}
+
+.Aya img {
+    width: 150px;
+    height: auto;
+}
+
+.Aya h1 {
+    text-align: center;
+    color: white;
+}
+
+.Aya p {
+    font-family: Inter, monospace;
+    color: white;
+    font-size: 20px;
+}
+
+.Aya a {
+    color: white;
+}

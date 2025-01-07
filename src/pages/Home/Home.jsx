@@ -6,26 +6,26 @@ import Banner from "../../components/Banner/Banner";
 import useSWR from "swr";
 
 const Home = () => {
-  const popularKey = useMemo(() => getPopular(10, 1), []);
-  const announcedKey = useMemo(() => getPopular(10, 1, "anons"), []);
+    const popularKey = useMemo(() => getPopular(10, 1), []);
+    const announcedKey = useMemo(() => getPopular(10, 1, "anons"), []);
 
-  const { data: popularAnime, error: popularAnimeError } = useSWR(popularKey, fetcher);
-  const { data: announcedAnime, error: announcedAnimeError } = useSWR(announcedKey, fetcher);
+    const { data: popularAnime, error: popularAnimeError } = useSWR(popularKey, fetcher);
+    const { data: announcedAnime, error: announcedAnimeError } = useSWR(announcedKey, fetcher);
 
-  if (popularAnimeError || announcedAnimeError) return <div>Failed to load</div>;
-  if (!popularAnime || !announcedAnime) return <div>Loading...</div>;
+    if (popularAnimeError || announcedAnimeError) return <div>Failed to load</div>;
+    if (!popularAnime || !announcedAnime) return <div>Loading...</div>;
 
-  return (
-    <div>
-      <Banner />
+    return (
+        <div>
+            <Banner />
 
-      <h1 className="AnimeListType">Популярное</h1>
-      <AnimeList animes={popularAnime} />
+            <h1 className="AnimeListType">Популярное</h1>
+            <AnimeList animes={popularAnime} />
 
-      <h1 className="AnimeListType">Анонсированы</h1>
-      <AnimeList animes={announcedAnime} />
-    </div>
-  );
+            <h1 className="AnimeListType">Анонсированы</h1>
+            <AnimeList animes={announcedAnime} />
+        </div>
+    );
 };
 
 export default Home;

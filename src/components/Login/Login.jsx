@@ -8,7 +8,7 @@ const LoginForm = ({ setCurrentStep }) => {
 
     const handleSubmit = (e) => {
       e.preventDefault();
-      setCurrentStep('code');
+      setCurrentStep('final');
     };
 
     return (
