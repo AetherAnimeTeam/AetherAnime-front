@@ -2,16 +2,16 @@
     display: flex;
     align-self: flex-start;
     position: absolute;
-    top: 4px;
-    left: 4px;
+    top: 0.21vw;
+    left: 0.21vw;
     flex-direction: row;
-    padding: 2px 8px 2px 6px;
-    width: 48px;
-    height: 20px;
-    background: rgba(194, 194, 194, 0.5);
-    backdrop-filter: blur(1.5px);
-    border-radius: 8px;
-    border: 1px solid rgba(194, 194, 194, 0.1);
+    padding: 0.1vw 0.42vw 0.1vw 0.31vw;
+    width: 2.5vw;
+    height: 1.04vw;
+    background: rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(1.0.26vw);
+    border-radius: 0.42vw;
+    border: 0.05vw solid rgba(194, 194, 194, 0.1);
     justify-content: center;
     z-index: 2;
 }
@@ -19,8 +19,8 @@
 .Score p {
     color: white;
     font-family: "Inter", monospace;
-    font-size: 12px;
+    font-size: 0.62vw;
     font-weight: 600;
-    margin-left: 5px;
-    margin-top: 3px;
+    margin-left: 0.26vw;
+    margin-top: 0.16vw;
 }

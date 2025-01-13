@@ -1,9 +1,9 @@
 .AnimeListType {
     display: flex;
     justify-content: start;
-    margin-left: 24px;
+    margin-left: 1.25vw;
     color: white;
     font-family: "Inter", monospace;
-    font-size: 24px;
+    font-size: 1.25vw;
     font-weight: 500;
 }

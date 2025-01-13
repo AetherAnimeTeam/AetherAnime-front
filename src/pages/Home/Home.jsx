@@ -1,9 +1,10 @@
 import {React, useMemo } from 'react';
 import AnimeList from "../../components/AnimeList";
 import "./Home.css";
-import { fetcher, getPopular } from "../../API/AnimeService";
+import { getPopular } from "../../API/AnimeService";
 import Banner from "../../components/Banner/Banner";
 import useSWR from "swr";
+import {fetcher} from "../../API/Base";
 
 const Home = () => {
     const popularKey = useMemo(() => getPopular(10, 1), []);
@@ -14,7 +15,7 @@ const Home = () => {
 
     if (popularAnimeError || announcedAnimeError) return <div>Failed to load</div>;
     if (!popularAnime || !announcedAnime) return <div>Loading...</div>;
-
+    console.log(popularAnime)
     return (
         <div>
             <Banner />

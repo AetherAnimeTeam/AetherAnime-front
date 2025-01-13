@@ -1,14 +1,36 @@
 import {useState} from "react";
 import classes from "./Login.module.css";
+import {register} from "../../API/UserService";
+import {post} from "../../API/Base";
 
-const RegisterForm = ({ setCurrentStep }) => {
-    const [email, setEmail] = useState('');
-    const [password, setPassword] = useState('');
-    const [confirmPassword, setConfirmPassword] = useState('');
+const RegisterForm = ({ setCurrentStep, password, setPassword, email, setEmail, error, setError}) => {
+    const [confirmPassword, setConfirmPassword] = useState("");
+    const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*]).{8,}$/;
 
-    const handleSubmit = (e) => {
-      e.preventDefault();
-      setCurrentStep('login');
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+
+        if(confirmPassword !== password){
+            setError("Пароли не совпадают!");
+            return;
+        }
+        if(!passwordRegex.test(password)){
+            setError("Ваш пароль слишком простой!");
+            return;
+        }
+
+        try {
+            const {data: data, status: status} = await post(...register({username: email.split("@")[0], email: email, password: password}));
+            if(status !== 201) {
+                setError(data.email);
+                return;
+            }
+        } catch (e) {
+            setError(e.message);
+            return;
+        }
+
+        setCurrentStep('code');
     };
 
     return (
@@ -35,6 +57,7 @@ const RegisterForm = ({ setCurrentStep }) => {
                 required
             />
             <button type="submit">Зарегистрироваться</button>
+            <p className={classes.ErrorText}>{error}</p>
             <p>У меня есть аккаунт, <a className={classes.clickableText}
                                        onClick={() => setCurrentStep('login')}>вход</a>
             </p>

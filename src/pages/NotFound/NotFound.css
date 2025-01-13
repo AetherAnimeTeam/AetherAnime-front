@@ -1,12 +1,12 @@
 .NotFound {
     display: flex;
     flex-direction: column;
-    margin-top: 15px;
+    margin-top: 0.78vw;
     align-items: center;
 }
 
 .NotFound img {
-    width: 500px;
+    width: 26.04vw;
     height: auto;
 }
 

@@ -9,14 +9,14 @@ const AnimeItem = ({anime}) => {
 
     return (
         <div
-            onClick={() => { router(`/anime/${anime.anime_id}`) }}
+            onClick={() => { router(`/anime/${anime.id}`) }}
             className={classes.AnimeItem}>
 
             {anime.score !== 0 ? <Score score={anime.score}/> : null }
 
-            <img src={anime.poster_url} alt={"preview"}></img>
+            <img src={anime.poster.originalUrl} alt={"preview"}></img>
 
-            <h1>{anime.name_ru.split("!")[0]}</h1>
+            <h1>{anime.russian.split("!")[0]}</h1>
 
         </div>
     );

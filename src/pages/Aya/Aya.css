@@ -1,12 +1,12 @@
 .Aya {
     display: flex;
     flex-direction: column;
-    margin-top: 15px;
+    margin-top: 0.78vw;
     align-items: center;
 }
 
 .Aya img {
-    width: 150px;
+    width: 7.81vw;
     height: auto;
 }
 
@@ -18,7 +18,7 @@
 .Aya p {
     font-family: Inter, monospace;
     color: white;
-    font-size: 20px;
+    font-size: 1.04vw;
 }
 
 .Aya a {

@@ -1,12 +1,43 @@
 .Footer {
+    height: 5.21vw;
     display: flex;
     background-color: rgba(14, 22, 31, 1);
     justify-content: center;
-    /*flex-direction: column;*/
-    align-content: flex-end;
+    flex-direction: column;
+    /*align-content: flex-end;*/
     margin-top: auto;
+    z-index: 9999;
+    gap: 0.42vw;
 }
 
-.Footer p {
-    color: white;
+.Text {
+    font-family: Inter, monospace;
+    font-weight: 400;
+    font-size: 0.78vw;
+    line-height: 0.94vw;
+    color: rgba(134, 134, 134, 1);
+    align-self: center;
+    margin: 0 0 0 0;
+}
+
+.Telegram {
+    display: flex;
+    flex-direction: row;
+    align-self: center;
+    gap: 0.52vw;
+}
+
+.Link {
+    font-family: Inter, monospace;
+    font-weight: 400;
+    font-size: 0.78vw;
+    line-height: 0.94vw;
+    color: rgba(134, 134, 134, 1);
+    text-decoration: none;
+    align-self: center;
+}
+
+.Icon {
+    height: 1.56vw;
+    width: 1.56vw;
 }

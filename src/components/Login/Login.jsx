@@ -1,14 +1,15 @@
 import React, {useState} from 'react';
 import classes from "./Login.module.css"
 import {ReactComponent as GoogleLogo} from "../../assets/icons/google.svg"
+import {useCookies} from "react-cookie";
 
-const LoginForm = ({ setCurrentStep }) => {
-    const [email, setEmail] = useState('');
-    const [password, setPassword] = useState('');
+const LoginForm = ({ setCurrentStep, password, setPassword, email, setEmail, error, setError}) => {
+    const [cookies, setCookies] = useCookies(["access_token", "refresh_token", "expires_in"])
 
     const handleSubmit = (e) => {
-      e.preventDefault();
-      setCurrentStep('final');
+        e.preventDefault();
+
+        setCurrentStep("final");
     };
 
     return (
@@ -27,17 +28,19 @@ const LoginForm = ({ setCurrentStep }) => {
                 onChange={(e) => setPassword(e.target.value)}
                 required
             />
+            <p className={classes.ErrorText} style={{marginTop: "122px"}}>{error}</p>
+
             <button type="submit">Войти</button>
-            <p>У меня нет аккаунта, <a className={classes.clickableText}
-                                       onClick={() => setCurrentStep('register')}>регистрация</a>
+            <p style={{marginBottom: "5px"}}>У меня нет аккаунта, <a className={classes.clickableText}
+                                                                     onClick={() => setCurrentStep('register')}>регистрация</a>
             </p>
-            <p style={{marginTop: 0}}> Восстановить <a className={classes.whiteClickableText}>пароль</a> </p>
+            <p style={{marginTop: 0}}> Восстановить <a className={classes.whiteClickableText}>пароль</a></p>
             <div className={classes.Other_login_methods}>вход через соц. сети</div>
             <div className={classes.SocialNetworks}>
-                <GoogleLogo />
+                <GoogleLogo/>
             </div>
         </form>
     );
-  };
+};
 
 export default LoginForm;

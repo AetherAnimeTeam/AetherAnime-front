@@ -5,7 +5,7 @@
     overflow: hidden;
     width: 100%;
     height: auto;
-    margin-left: 24px;
+    margin-left: 1.25vw;
 }
 
 .AnimeList {
@@ -16,8 +16,8 @@
     overflow-x: scroll;
     overflow-y: hidden;
     scrollbar-width: none;
-    padding-top: 10px;
-    gap: 8px
+    padding-top: 0.52vw;
+    gap: 0.42vw
 }
 
 /* Disable scrollbar for WebKit browsers */
@@ -33,7 +33,7 @@
     background-color: rgba(0, 0, 0, 0.5);
     color: white;
     border: none;
-    /*padding: 10px;*/
+    /*padding: 0.52vw;*/
     cursor: pointer;
     /*z-index: 10; !* Устанавливаем высокий z-index, чтобы стрелки были поверх изображений *!*/
 }

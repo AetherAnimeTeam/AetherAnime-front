@@ -2,11 +2,11 @@
     display: flex;
     flex-direction: row;
     align-items: flex-start;
-    margin: 15px;
+    margin: 0.78vw;
 }
 
 .expand_description {
-    font-size: 18px;
+    font-size: 0.94vw;
     font-weight: 400;
     font-family: Inter, monospace;
     color: rgba(47, 128, 237, 1);
@@ -23,10 +23,10 @@
     display: flex;
     flex-direction: column;
     justify-self: center;
-    width: 200px;
+    width: 10.42vw;
     height: auto;
     padding: 0;
-    gap: 8px;
+    gap: 0.42vw;
 }
 
 .Stars {
@@ -35,15 +35,15 @@
 }
 
 .Star {
-    width: 20px;
-    height: 20px;
-    margin-right: 4px;
+    width: 1.04vw;
+    height: 1.04vw;
+    margin-right: 0.31vw;
 }
 
 .Rating p {
     font-family: Inter, monospace;
     font-weight: 400;
-    font-size: 27px;
+    font-size: 0.8vw;
     color: rgba(134, 134, 134, 1);
     margin: 0;
 }
@@ -51,8 +51,7 @@
 .Rating h2 {
     font-family: Inter, monospace;
     font-weight: 600;
-    font-size: 48px;
-    color: white;
+    font-size: 2.5vw;
     margin: 0;
 }
 
@@ -61,33 +60,33 @@
     display: flex;
     flex-direction: column;
     align-items: flex-start;
-    margin-left: 15px;
-    margin-right: 15px;
+    margin-left: 0.78vw;
+    margin-right: 0.78vw;
     justify-content: space-between;
 }
 
 .Media img {
-    width: 350px;
-    height: 520px;
-    border-radius: 16px;
+    width: 18vw;
+    height: 27vw;
+    border-radius: 0.83vw;
 }
 
 .Details {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-    width: 100%;
-    margin-top: 24px;
+    width: 61vw;
+    margin-top: 1.25vw;
 }
 
 .Details-block {
     display: flex;
     flex-direction: column;
-    gap: 4px
+    gap: 0.21vw
 }
 
 .Detail-name {
-    font-size: 16px;
+    font-size: 0.8vw;
     font-family: Inter, monospace;
     font-weight: 400;
     color: rgba(134, 134, 134, 1);
@@ -95,15 +94,15 @@
 }
 
 .Detail-value {
-    font-size: 16px;
+    font-size: 0.8vw;
     font-family: Inter, monospace;
     font-weight: 400;
     color: white;
-    margin: 0 0 0 15px;
+    margin: 0 0 0 0.78vw;
 }
 
 .Info h1 {
-    font-size: 32px;
+    font-size: 1.7vw;
     margin-top: 0;
     text-align: start;
     font-family: "Inter", monospace;
@@ -112,42 +111,30 @@
 }
 
 .description {
-    /*background: linear-gradient(to bottom, rgba(255, 255, 255, 1), rgba(0, 0, 0, 0));*/
-    /*-webkit-background-clip: text;*/
-    /*background-clip: text;*/
-    /*color: transparent;*/
-
-    /*display: -webkit-box;*/
-    /*-webkit-line-clamp: 6;*/
-    /*overflow: hidden;*/
-    /*-webkit-box-orient: vertical;*/
-
-    /*transition: max-height 0.5s ease-out;*/
-
-    font-size: 18px;
-    line-height: 27px;
+    font-size: 1vw;
+    line-height: 1.4vw;
     margin-top: 0;
-    margin-right: 15px;
-    width: 100%;
+    margin-right: 0.78vw;
+    width: 61vw;
 
     color: white;
 
     font-family: "Inter", monospace;
 }
 
-@media (max-width: 500px) {
+@media (max-width: 26.04vw) {
     .Anime {
         flex-direction: column;
         justify-content: space-between;
         align-items: center;
     }
     .Anime img {
-        width: 150px;
+        width: 7.81vw;
     }
     .Text h1 {
-        font-size: 12px;
+        font-size: 0.62vw;
 
-        margin-top: 15px;
+        margin-top: 0.78vw;
     }
 
     .Text p {
