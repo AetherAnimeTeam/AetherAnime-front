@@ -7,4 +7,5 @@
     min-height: 100vh;
     flex-direction: column;
     background: rgba(14, 22, 31, 1);
+    overflow: hidden;
 }

@@ -1,0 +1,54 @@
+.playerContainer {
+    position: relative;
+    overflow: hidden;
+    background: #000;
+}
+
+.controlPanel {
+    display: flex;
+    flex-direction: column;
+    height: 2.5vw;
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    padding: 0;
+    background: linear-gradient(180deg, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.8) 100%);
+    color: #fff;
+}
+
+.PlayerControls {
+    display: flex;
+    height: 1.25vw;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.controlElements {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.42vw 1.25vw 0.57vw 1.25vw;
+}
+
+.elementsBlock {
+    display: flex;
+    flex-direction: row;
+    gap: 1.25vw;
+    text-align: center;
+}
+
+.controlElement {
+    width: 1.25vw;
+    height: 1.25vw;
+}
+
+.duration {
+    padding: 0;
+    margin: 0;
+    font-family: Inter, monospace;
+    font-weight: 400;
+    font-size: 0.78vw;
+    line-height: 1.2vw;
+    user-select: none;
+}

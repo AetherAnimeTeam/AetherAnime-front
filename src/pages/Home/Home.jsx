@@ -7,8 +7,8 @@ import useSWR from "swr";
 import {fetcher} from "../../API/Base";
 
 const Home = () => {
-    const popularKey = useMemo(() => getPopular(10, 1), []);
-    const announcedKey = useMemo(() => getPopular(10, 1, "anons"), []);
+    const popularKey = useMemo(() => getPopular(25, 1), []);
+    const announcedKey = useMemo(() => getPopular(25, 1, "anons"), []);
 
     const { data: popularAnime, error: popularAnimeError } = useSWR(popularKey, fetcher);
     const { data: announcedAnime, error: announcedAnimeError } = useSWR(announcedKey, fetcher);

@@ -1,3 +1,17 @@
+.Container {
+    display: flex;
+    flex-direction: column;
+}
+
+.Video {
+    display: flex;
+    flex-direction: row;
+}
+
+.Player {
+
+}
+
 .Anime {
     display: flex;
     flex-direction: row;

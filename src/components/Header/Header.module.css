@@ -14,6 +14,8 @@
 .Logo:visited, .Logo:active, .Logo:hover, .Logo {
     grid-area: logo;
     margin-left: 1.25vw;
+    width: 10.63vw;
+    height: 1.92vw;
 }
 
 .Main {
