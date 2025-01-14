@@ -17,7 +17,11 @@
     max-height: 16.46vw;
     object-fit: cover;
     border-radius: 0.42vw;
-    z-index: 1;
+    z-index: 99999;
+    -webkit-backface-visibility: hidden; /* Chrome, Safari, Opera */
+    -ms-transform: translateZ(0); /* IE 9 */
+    transform: translate3d(0px, 0px, 0.1px);
+    image-rendering: high-quality;
 }
 
 .AnimeItem h1 {

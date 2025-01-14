@@ -66,8 +66,8 @@ const Header = (props) => {
 
     return (
         <header className={cls.Header}>
-            <Link to="/" className={cls.Logo}>
-                <Logo />
+            <Link to="/">
+                <Logo className={cls.Logo}/>
             </Link>
             <div className={cls.Main}>
                 <input
@@ -77,14 +77,14 @@ const Header = (props) => {
                     onChange={(e) => setAnimeName(e.target.value)}
                 />
 
-                <Link to="/aya" className={cls.route}>
-                    <NotificationIcon />
+                <Link to="/aya">
+                    <NotificationIcon className={cls.icon}/>
                 </Link>
-                <Link to="/about" className={cls.route}>
-                    <NotificationIcon />
+                <Link to="/about">
+                    <NotificationIcon className={cls.icon} />
                 </Link>
-                <Link to="/my" className={cls.route}>
-                    <BookmarkIcon />
+                <Link to="/my">
+                    <BookmarkIcon className={cls.icon} />
                 </Link>
                 <div className={cls.User} onClick={ handleUser }>
                     {userData.username ? null: <User/>}

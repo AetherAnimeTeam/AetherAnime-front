@@ -2,16 +2,21 @@ import React, {useMemo} from 'react';
 import {useParams} from "react-router-dom";
 
 import useSWR from "swr";
-import {getDetailed} from "../../API/AnimeService";
+import {getDetailed, getPopular} from "../../API/AnimeService";
 import {fetcher} from "../../API/Base";
 
 import "./Anime.css"
 import {ReactComponent as Star} from "../../assets/icons/star_filled.svg";
 import VideoPlayer from "../../components/VideoPlayer/VideoPlayer";
+import AnimeList from "../../components/AnimeList";
+import CommentField from "../../components/CommentField/CommentField";
 
 const Anime = () => {
     const params = useParams()
     const descriptionRegex = /(\[character=\d+]|\[\/character])/g;
+
+    const popularKey = useMemo(() => getPopular(25, 1), []);
+    const { data: popularAnime, error: popularAnimeError } = useSWR(popularKey, fetcher);
 
     const ageRatingDict = {g: "0+", pg: "0+", pg_13: "13+", r: "17+", nc_17: "18+"}
     const statusDict = {released: "Вышел"}
@@ -23,7 +28,9 @@ const Anime = () => {
     ));
     if(metaError) return <div>Error</div>
     if(!animeMeta) return <div>Loading...</div>
-    console.log(animeMeta)
+
+    if (popularAnimeError) return <div>Failed to load</div>;
+    if (!popularAnime) return <div>Loading...</div>;
     return (
         <div className="Container">
             <div className="Anime">
@@ -78,7 +85,14 @@ const Anime = () => {
             <div className="Video">
                 <VideoPlayer animeName={animeMeta.name_ru}/>
             </div>
+
+            <h2 className="AnimeListType">Похожие</h2>
+            <AnimeList animes={popularAnime}/>
+
+            <h2 className="AnimeListType">Написать комментарий</h2>
+            <CommentField />
         </div>
+
     );
 };
 

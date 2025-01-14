@@ -4,7 +4,7 @@ import {useNavigate} from "react-router-dom";
 import Score from "./UI/Score/Score";
 
 const AnimeItem = ({anime}) => {
-
+    // TODO: add width based preview selection
     const router = useNavigate()
 
     return (
@@ -14,7 +14,7 @@ const AnimeItem = ({anime}) => {
 
             {anime.score !== 0 ? <Score score={anime.score}/> : null }
 
-            <img src={anime.poster.originalUrl} alt={"preview"}></img>
+            <img src={anime.poster.previewUrl} alt={"preview"}></img>
 
             <h1>{anime.russian.split("!")[0]}</h1>
 

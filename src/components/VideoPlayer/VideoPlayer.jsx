@@ -7,6 +7,7 @@ import {ReactComponent as PlayIcon} from "../../assets/icons/play.svg";
 import {ReactComponent as LeftArrowIcon} from "../../assets/icons/left_arrow.svg";
 import {ReactComponent as RightArrowIcon} from "../../assets/icons/right_arrow.svg";
 import {ReactComponent as MutedIcon} from "../../assets/icons/muted.svg";
+import {ReactComponent as VolumeIcon} from "../../assets/icons/volume.svg";
 import {ReactComponent as NormalscreenIcon} from "../../assets/icons/normalscreen.svg";
 import ProgressBar from "../ProgressBar/ProgressBar";
 
@@ -101,8 +102,8 @@ const VideoPlayer = () => {
                             <RightArrowIcon className={classes.controlElement} onClick={() => handleAcceleration(-10)}/>
                             <LeftArrowIcon className={classes.controlElement} onClick={() => handleAcceleration(10)}/>
 
-                            {muted ? <MutedIcon className={classes.controlElement} onClick={() =>setMuted(false)}/> :
-                                <MutedIcon className={classes.controlElement} onClick={() => setMuted(true)}/> }
+                            {muted ? <MutedIcon className={classes.controlElement} onClick={toggleMute}/> :
+                                <VolumeIcon className={classes.controlElement} onClick={toggleMute}/> }
 
                             <p className={classes.duration}>{formatTime(progress * duration)} / {formatTime(duration)}</p>
                         </div>

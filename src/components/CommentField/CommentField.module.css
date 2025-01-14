@@ -1,0 +1,31 @@
+.editorContainer {
+  display: flex;
+  width: 100%;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.inputField {
+  height: 200px;
+  width: 1840px;
+  color: white;
+  font-family: Inter, monospace;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 27px;
+  background: rgba(25, 32, 39, 1);
+  border-radius: 16px;
+}
+
+.inputField:focus {
+  outline: none;
+}
+
+button {
+  margin: 5px;
+}
+
+.spoiler {
+  background-color: #eee;
+  color: #aaa;
+}

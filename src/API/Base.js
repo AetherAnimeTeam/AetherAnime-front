@@ -1,6 +1,6 @@
 import axios from "axios";
 
-export const backendUrl = "http://127.0.0.1:8000";
+export const backendUrl = process.env["BACKEND_URL"] || "http://127.0.0.1:8000";
 
 export const fetcher = async (url, config = null) => {
     const response = await axios.get(url, {...config, validateStatus: () => true});
