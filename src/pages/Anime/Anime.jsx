@@ -8,7 +8,7 @@ import {fetcher} from "../../API/Base";
 import "./Anime.css"
 import {ReactComponent as Star} from "../../assets/icons/star_filled.svg";
 import VideoPlayer from "../../components/VideoPlayer/VideoPlayer";
-import AnimeList from "../../components/AnimeList";
+import AnimeList from "../../components/AnimeList/AnimeList";
 import CommentField from "../../components/CommentField/CommentField";
 
 const Anime = () => {

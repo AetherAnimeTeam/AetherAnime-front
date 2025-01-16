@@ -1,36 +1,34 @@
 .Header {
-    display: grid;
-    grid-template-areas:
-        "logo main";
-    grid-template-columns: repeat(1, 0.5fr);
+    display: flex;
     justify-content: space-between;
     height: 3.65vw;
     align-items: center;
     background-color: rgba(14, 22, 31, 1);
     color: white;
     padding: 0;
+    box-sizing: border-box;
 }
 
 .Logo:visited, .Logo:active, .Logo:hover, .Logo {
-    grid-area: logo;
-    margin-left: 1.25vw;
+    margin-left: 2.6vw;
     width: 10.63vw;
     height: 1.92vw;
 }
 
 .Main {
-    grid-area: main;
     display: flex;
     height: 2.08vw;
-    width: 25.78vw;
+    width: fit-content;
+    margin-right: 2.6vw;
     gap: 1.25vw;
     align-items: center;
     justify-content: center;
+    box-sizing: border-box;
 }
 
 .Main input {
     height: 2.08vw;
-    width: 13.28vw;
+    width: 18.23vw;
     border-radius: 0.83vw;
     border: none;
     max-width: 20.83vw;
@@ -54,22 +52,27 @@
     height: 1.25vw;
 }
 
+.Search {
+    position: relative;
+}
+
 .User {
-    grid-area: user;
     display: flex;
     flex-direction: row;
-    width: 7.81vw;
     height: 2.08vw;
+    width: fit-content;
     border-radius: 0.83vw;
     border: none;
-    align-items: center;
+    max-width: 20.83vw;
     background: rgba(42, 46, 50, 1);
+    color: white;
+    align-items: center;
     justify-content: center;
-    gap: 0.31vw;
-    padding: 0.21vw 2.08vw 0.21vw 2.08vw;
-    margin-right: 5.21vw;
+    gap: 0.42vw;
+    padding: 0 1.3vw 0 1.3vw;
+    /*margin-right: 5.21vw;*/
     cursor: pointer;
-    box-sizing: border-box;
+    /*box-sizing: border-box;*/
 }
 
 .User p {
@@ -79,11 +82,7 @@
     font-family: Inter, monospace;
     color: white;
     user-focus: none;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
 }
-
 
 .Modal {
     position: fixed;

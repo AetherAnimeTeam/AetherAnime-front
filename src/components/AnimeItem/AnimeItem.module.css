@@ -1,0 +1,63 @@
+.AnimeItem {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 100%;
+    position: relative;
+    transition: transform .3s;
+}
+
+.ImageWrapper {
+    transition: all 0.3s;
+}
+
+.ImageWrapper img {
+    width: 11.15vw;
+    height: 16.51vw;
+    max-height: 16.46vw;
+    object-fit: cover;
+    border-radius: 0.42vw;
+    -webkit-backface-visibility: hidden; /* Chrome, Safari, Opera */
+    -ms-transform: translateZ(0); /* IE 9 */
+    transform: translate3d(0.0vw, 0.0vw, 0.05vw);
+    image-rendering: high-quality;
+}
+
+.ImageWrapper::after {
+    content: "";
+    border-radius: 0.26vw;
+    position: absolute;
+    z-index: -1;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    box-shadow: 5.21vw 0 2.6vw -0.21vw rgba(14, 22, 31, 0.5), -5.21vw 0 2.6vw -0.21vw rgba(14, 22, 31, 0.5);
+    -webkit-box-shadow: 5.21vw 0 2.6vw -0.21vw rgba(14, 22, 31, 0.5), -5.21vw 0 2.6vw -0.21vw rgba(14, 22, 31, 0.5);
+    -moz-box-shadow: 5.21vw 0 2.6vw -0.21vw rgba(14, 22, 31, 0.5), -5.21vw 0 2.6vw -0.21vw rgba(14, 22, 31, 0.5);
+    opacity: 0;
+    transition: all 0.3s;
+}
+
+.AnimeItem:hover .ImageWrapper::after {
+    opacity: 1;
+}
+
+.AnimeItem:hover {
+    transform: scale(1.1);
+    z-index: 5;
+}
+
+.AnimeItem h1 {
+    text-align: center;
+    margin-top: 0.1vw;
+    color: white;
+    font-family: "Inter", monospace;
+    font-size: 0.83vw;
+    font-weight: 500;
+
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    overflow: hidden;
+    -webkit-box-orient: vertical;
+}

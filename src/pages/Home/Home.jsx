@@ -1,5 +1,5 @@
 import {React, useMemo } from 'react';
-import AnimeList from "../../components/AnimeList";
+import AnimeList from "../../components/AnimeList/AnimeList";
 import "./Home.css";
 import { getPopular } from "../../API/AnimeService";
 import Banner from "../../components/Banner/Banner";
@@ -20,11 +20,9 @@ const Home = () => {
         <div>
             <Banner />
 
-            <h1 className="AnimeListType">Популярное</h1>
-            <AnimeList animes={popularAnime} />
+            <AnimeList animes={popularAnime}  name="Популярное" />
 
-            <h1 className="AnimeListType">Анонсированы</h1>
-            <AnimeList animes={announcedAnime} />
+            <AnimeList animes={announcedAnime} name="Анонсированы"/>
         </div>
     );
 };

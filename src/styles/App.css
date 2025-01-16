@@ -9,3 +9,10 @@
     background: rgba(14, 22, 31, 1);
     overflow: hidden;
 }
+
+*{
+    -ms-overflow-style: none;
+}
+::-webkit-scrollbar {
+    display: none;
+}

@@ -7,15 +7,22 @@ import StatusLine from "../../components/StatusLine/StatusLine";
 import {getUserDataById} from "../../API/UserService";
 import useSWR from "swr";
 import {fetcher} from "../../API/Base";
-import {useParams} from "react-router-dom";
+import {useNavigate, useParams} from "react-router-dom";
+import {useCookies} from "react-cookie";
 
 const User = () => {
     const params = useParams()
+    const [cookies, setCookies, removeCookie] = useCookies(["access_token", "refresh_token"])
+    const navigate = useNavigate()
 
-    const userParams = useMemo(() => getUserDataById(params.id),
-        [params.id]);
+    const userParams = useMemo(() => getUserDataById(params.id), [params.id]);
 
-    console.log(userParams)
+    const handleLogout = () => {
+        removeCookie("access_token", {path:'/'});
+        removeCookie("refresh_token", {path:'/'});
+        navigate("/")
+    }
+
     const {data: userData, error: userDataError} = useSWR(userParams, fetcher)
     if (!userData) return <div>Loading...</div>;
 
@@ -46,6 +53,7 @@ const User = () => {
 
                 <StatusLine data={data} />
             </div>
+            <button style={{zIndex: 1}} onClick={handleLogout}>Выйти из аккаунта</button>
         </div>
     );
 };

@@ -1,31 +1,61 @@
-.editorContainer {
+.commentFieldContainer {
   display: flex;
-  width: 100%;
-  max-width: 600px;
-  margin: 0 auto;
+  flex-direction: column;
+  gap: 0.52vw;
 }
 
-.inputField {
-  height: 200px;
-  width: 1840px;
-  color: white;
-  font-family: Inter, monospace;
-  font-weight: 400;
-  font-size: 18px;
-  line-height: 27px;
-  background: rgba(25, 32, 39, 1);
-  border-radius: 16px;
-}
-
-.inputField:focus {
-  outline: none;
+.buttonContainer {
+  display: flex;
+  gap: 0.52vw;
 }
 
 button {
-  margin: 5px;
+  padding: 0.26vw 0.52vw;
+  border: 0.05vw solid #ccc;
+  background-color: #f9f9f9;
+  cursor: pointer;
+  border-radius: 0.16vw;
+  transition: background-color 0.3s;
+}
+
+button:hover {
+  background-color: #e1e1e1;
+}
+
+.editable {
+  border: 0.05vw solid #ccc;
+  padding: 0.52vw;
+  min-height: 5.21vw;
+  border-radius: 0.16vw;
+  background-color: #fff;
+  overflow: auto;
+  white-space: pre-wrap;
+  line-height: 1.5;
+}
+
+.editable:empty::before {
+  content: attr(data-placeholder); /* Optional placeholder text */
+  color: #aaa;
+}
+
+.bold {
+  font-weight: bold;
+}
+
+.italic {
+  font-style: italic;
+}
+
+.underline {
+  text-decoration: underline;
+}
+
+.strikethrough {
+  text-decoration: line-through;
 }
 
 .spoiler {
-  background-color: #eee;
-  color: #aaa;
+  background-color: black;
+  color: black;
+  text-shadow: 0 0 0.26vw white;
 }

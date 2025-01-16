@@ -10,3 +10,8 @@ export const getDetailed = (anime_id) => {
   const url = `${backendUrl}/api/animes/${anime_id}`;
   return url;
 };
+
+export const getByName = (name) => {
+  const url = `${backendUrl}/api/animes/search/${name}`
+  return url
+}

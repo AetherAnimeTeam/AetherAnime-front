@@ -1,7 +1,5 @@
 import axios from "axios";
 
-console.log(process.env)
-
 export const backendUrl = process.env["REACT_APP_BACKEND_URL"] || "http://127.0.0.1:8000";
 
 export const fetcher = async (url, config = null) => {
