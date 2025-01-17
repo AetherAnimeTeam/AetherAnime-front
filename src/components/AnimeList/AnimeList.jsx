@@ -30,7 +30,7 @@ const AnimeList = ({ animes, name}) => {
     }, []);
 
     const transfromPx = (x) => x / 100 * width;
-    const scrollW = scrollN * transfromPx(11.15) + (scrollN + 1) * transfromPx(0.83) - transfromPx(1.77);;
+    const scrollW = scrollN * transfromPx(11.15) + (scrollN + 1) * transfromPx(0.83) - transfromPx(1.77) + transfromPx(0.2);
 
 
     const scrollLeft = () => {
