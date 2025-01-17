@@ -2,6 +2,7 @@ import React, {useEffect, useState} from 'react';
 import cls from "./Header.module.css";
 import {Link, useNavigate} from "react-router-dom";
 import {ReactComponent as NotificationIcon} from "../../assets/icons/notification.svg";
+import {ReactComponent as AyaIcon} from "../../assets/icons/aya.svg";
 import {ReactComponent as BookmarkIcon} from "../../assets/icons/bookmark.svg";
 import {ReactComponent as User} from "../../assets/icons/user.svg";
 import {ReactComponent as Logo} from "../../assets/icons/logo.svg";
@@ -120,15 +121,14 @@ const Header = () => {
                     </div>
 
                 </div>
-
-                <Link to="/aya">
-                    <NotificationIcon className={cls.icon}/>
-                </Link>
                 <Link to="/about">
                     <NotificationIcon className={cls.icon} />
                 </Link>
                 <Link to="/my">
                     <BookmarkIcon className={cls.icon} />
+                </Link>
+                <Link to="/aya">
+                    <AyaIcon className={cls.icon}/>
                 </Link>
                 <div className={cls.User} onClick={ handleUser }>
                     {userData ? null: <User/>}

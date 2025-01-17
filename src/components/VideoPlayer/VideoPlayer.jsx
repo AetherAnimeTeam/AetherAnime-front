@@ -4,6 +4,7 @@ import screenfull from "screenfull";
 import classes from "./VideoPlayer.module.css";
 import {ReactComponent as FullscreenIcon} from "../../assets/icons/fullscren.svg";
 import {ReactComponent as PlayIcon} from "../../assets/icons/play.svg";
+import {ReactComponent as PauseIcon} from "../../assets/icons/pause.svg";
 import {ReactComponent as LeftArrowIcon} from "../../assets/icons/left_arrow.svg";
 import {ReactComponent as RightArrowIcon} from "../../assets/icons/right_arrow.svg";
 import {ReactComponent as MutedIcon} from "../../assets/icons/muted.svg";
@@ -96,7 +97,7 @@ const VideoPlayer = () => {
                         onChange={handleSeekChange}/>
                     <div className={classes.controlElements}>
                         <div className={classes.elementsBlock}>
-                            {playing ? <PlayIcon className={classes.controlElement} onClick={togglePlay}/> :
+                            {playing ? <PauseIcon className={classes.controlElement} onClick={togglePlay}/> :
                                 <PlayIcon className={classes.controlElement} onClick={togglePlay}/>}
 
                             <RightArrowIcon className={classes.controlElement} onClick={() => handleAcceleration(-10)}/>

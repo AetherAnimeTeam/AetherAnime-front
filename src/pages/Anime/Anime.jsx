@@ -86,8 +86,7 @@ const Anime = () => {
                 <VideoPlayer animeName={animeMeta.name_ru}/>
             </div>
 
-            <h2 className="AnimeListType">Похожие</h2>
-            <AnimeList animes={popularAnime}/>
+            <AnimeList animes={popularAnime} name="Похожие"/>
 
             <h2 className="AnimeListType">Написать комментарий</h2>
             <CommentField />
