@@ -58,7 +58,7 @@
     opacity: 0;
     /*transition: opacity 0.1s ease;*/
     cursor: pointer;
-    z-index: 4;
+    z-index: 10;
     transition: opacity 0.6s;
 }
 
@@ -81,5 +81,6 @@
 .ArrowContainer.hidden {
     opacity: 0 !important;
     z-index: 0;
+    cursor: default;
 }
 

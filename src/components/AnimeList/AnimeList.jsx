@@ -7,7 +7,7 @@ const AnimeList = ({ animes, name}) => {
     const animeListRef = useRef(null);
     const [showLeftArrow, setShowLeftArrow] = useState(false);
     const [showRightArrow, setShowRightArrow] = useState(true);
-    const [isFullWidth, setFullWidth] = useState(false);
+    const width = window.screen.width;
     const scrollN = 8;
 
     useEffect(() => {
@@ -16,7 +16,6 @@ const AnimeList = ({ animes, name}) => {
                 const scrolled = animeListRef.current.scrollLeft;
                 const scrollWidth = animeListRef.current.scrollWidth;
                 const clientWidth = animeListRef.current.clientWidth;
-                console.log(scrolled)
                 setShowLeftArrow(scrolled > 0);
                 setShowRightArrow(scrolled < scrollWidth - clientWidth);
             }
@@ -30,24 +29,26 @@ const AnimeList = ({ animes, name}) => {
         };
     }, []);
 
+    const transfromPx = (x) => x / 100 * width;
+    const scrollW = scrollN * transfromPx(11.15) + (scrollN + 1) * transfromPx(0.83) - transfromPx(1.77);;
+
+
     const scrollLeft = () => {
         if (animeListRef.current) {
-            let scrollW = scrollN * 11.15 + (scrollN + 1) * 0.83 - 1.77;
+            // let scrollW = scrollN * transfromPx(11.15) + (scrollN + 1) * transfromPx(0.83) - transfromPx(1.77);
             // if(animeListRef.current.scrollLeft === 0)
             //     scrollW += 1.25 - 2.21;
-
-            animeListRef.current.scrollBy({ left: -scrollW / 100 * window.screen.width, behavior: 'smooth' });
+            animeListRef.current.scrollBy({ left: -scrollW, behavior: 'smooth' });
         }
     };
 
     const scrollRight = () => {
         if (animeListRef.current) {
-            let scrollW = scrollN * 11.15 + (scrollN + 1) * 0.83 - 1.77;
             // let scrollW = scrollN * 11.67 + (scrollN + 1) * 0.42;
             // if(animeListRef.current.scrollLeft === 0)
             //     scrollW += 1.25 - 2.21;
 
-            animeListRef.current.scrollBy({ left: scrollW / 100 * window.screen.width, behavior: 'smooth' });
+            animeListRef.current.scrollBy({ left: scrollW, behavior: 'smooth' });
         }
     };
 
