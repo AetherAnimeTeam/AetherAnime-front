@@ -7,6 +7,7 @@
     "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^13.5.0",
     "axios": "^1.7.7",
+    "http-server": "^14.1.1",
     "react": "^18.3.1",
     "react-cookie": "^7.2.2",
     "react-dom": "^18.3.1",
@@ -19,7 +20,7 @@
     "web-vitals": "^2.1.4"
   },
   "scripts": {
-    "predeploy": "npm run build",
+    "deploy": "npm run build && http-server --proxy http://0.0.0.0:8080? ./build",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
