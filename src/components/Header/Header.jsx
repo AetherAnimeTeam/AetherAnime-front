@@ -36,7 +36,6 @@ const Header = () => {
         const getData = async () => {
             if(cookies.access_token === "undefined" || cookies.access_token === undefined){
                 if(cookies.refresh_token === "undefined" || cookies.refresh_token === undefined){
-                    console.log("нет токенов")
                     setUserData(null);
                     setCurrentStep("login");
                     setEmail("");

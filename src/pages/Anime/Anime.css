@@ -131,6 +131,23 @@
     font-family: "Inter", monospace;
 }
 
+.CommentsContainer {
+    display: flex;
+    flex-direction: column;
+    gap: 1.25vw;
+    margin-left: 2.6vw;
+    margin-right: 2.6vw;
+    margin-top: 24px;
+}
+
+.sub-header {
+    color: white;
+    font-family: "Inter", monospace;
+    font-size: 1.25vw;
+    font-weight: 500;
+    margin: 0;
+}
+
 @media (max-width: 26.04vw) {
     .Anime {
         flex-direction: column;

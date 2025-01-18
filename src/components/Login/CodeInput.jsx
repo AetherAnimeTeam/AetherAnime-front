@@ -29,6 +29,7 @@ const CodeInput = ({ setCurrentStep, email, errorCode, setError }) => {
 
     return (
         <form onSubmit={handleSubmit} className={classes.Container}>
+            <p>Отправили вам код на почту, проверьте её!</p>
             <input
                 className={errorCode === 5 ? `${classes.error} ${classes.shake}`: null}
                 type="text"

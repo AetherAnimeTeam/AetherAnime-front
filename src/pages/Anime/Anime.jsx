@@ -1,4 +1,4 @@
-import React, {useMemo} from 'react';
+import React, {useMemo, useState} from 'react';
 import {useParams} from "react-router-dom";
 
 import useSWR from "swr";
@@ -10,27 +10,33 @@ import {ReactComponent as Star} from "../../assets/icons/star_filled.svg";
 import VideoPlayer from "../../components/VideoPlayer/VideoPlayer";
 import AnimeList from "../../components/AnimeList/AnimeList";
 import CommentField from "../../components/CommentField/CommentField";
+import Button from "../../components/UI/Button/Button";
+import {useCookies} from "react-cookie";
+import {getComments, sendComment} from "../../API/CommentService";
+import Comment from "../../components/UI/Comment/Comment";
+import {getUserDataById} from "../../API/UserService";
 
 const Anime = () => {
     const params = useParams()
+    const [cookie] = useCookies(["access_token"])
     const descriptionRegex = /(\[character=\d+]|\[\/character])/g;
-
     const popularKey = useMemo(() => getPopular(25, 1), []);
     const { data: popularAnime, error: popularAnimeError } = useSWR(popularKey, fetcher);
-
     const ageRatingDict = {g: "0+", pg: "0+", pg_13: "13+", r: "17+", nc_17: "18+"}
     const statusDict = {released: "Вышел"}
-    const animeMetaKey = useMemo(() => getDetailed(params["id"]), [params])
-    const { data: animeMeta, error: metaError } = useSWR(animeMetaKey, fetcher);
+    const animeKey = useMemo(() => getDetailed(params["id"]), [params])
+    const commentsKey = useMemo(() => getComments(params["id"]), [params])
+    const { data: animeMeta, error: metaError } = useSWR(animeKey, fetcher);
+    const { data: comments, error: commentsError, mutate: commentsMutate} = useSWR(commentsKey, fetcher)
+    const stars = [...Array(10)].map((_, index) => (<Star key={index} className="Star" />));
+    const makeComment = async (text) => {
+        await sendComment(params["id"], text, cookie.access_token);
+        await commentsMutate();
+    }
 
-    const stars = [...Array(10)].map((_, index) => (
-        <Star key={index} className="Star" />
-    ));
-    if(metaError) return <div>Error</div>
-    if(!animeMeta) return <div>Loading...</div>
+    if(metaError || popularAnimeError || commentsError ) return <div>Error</div>
+    if(!animeMeta || !popularAnime || !comments) return <div>Loading...</div>
 
-    if (popularAnimeError) return <div>Failed to load</div>;
-    if (!popularAnime) return <div>Loading...</div>;
     return (
         <div className="Container">
             <div className="Anime">
@@ -88,8 +94,13 @@ const Anime = () => {
 
             <AnimeList animes={popularAnime} name="Похожие"/>
 
-            <h2 className="AnimeListType">Написать комментарий</h2>
-            <CommentField />
+            {cookie.access_token ? <div className="CommentsContainer">
+                <h2 className="sub-header">Написать комментарий</h2>
+                <CommentField sendComment={makeComment}/>
+            </div> : <h2 className="sub-header" style={{marginLeft: "2.6vw", marginTop: "2.6vw"}}>
+                Писать комментарии может только зарегистрированный пользователь!</h2> }
+
+            {comments.results.map((obj) => <Comment userId={obj.user} text={obj.content}/>)}
         </div>
 
     );

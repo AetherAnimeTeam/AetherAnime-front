@@ -1,0 +1,53 @@
+.AnimeItemContainer {
+    display: flex;
+    flex-direction: row;
+    gap: 12px;
+    padding: 8px 16px 8px 16px;
+    align-content: space-between;
+}
+
+.poster {
+    width: 54px;
+    height: 80px;
+    border-radius: 3px;
+}
+
+.textInfo {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.meta {
+    display: flex;
+    flex-direction: row;
+    gap: 12px;
+    width: fit-content;
+    align-items: end;
+}
+
+.name {
+    font-family: Inter, monospace;
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 27px;
+    color: white;
+    margin: 0;
+}
+
+.score {
+    font-family: Inter, monospace;
+    font-weight: 500;
+    font-size: 20px;
+    line-height: 24px;
+    margin: 0;
+}
+
+.year {
+    font-family: Inter, monospace;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 22px;
+    color: rgba(134, 134, 134, 1);
+    margin: 0;
+}

@@ -1,61 +1,65 @@
 .commentFieldContainer {
-  display: flex;
-  flex-direction: column;
-  gap: 0.52vw;
-}
-
-.buttonContainer {
-  display: flex;
-  gap: 0.52vw;
-}
-
-button {
-  padding: 0.26vw 0.52vw;
-  border: 0.05vw solid #ccc;
-  background-color: #f9f9f9;
-  cursor: pointer;
-  border-radius: 0.16vw;
-  transition: background-color 0.3s;
-}
-
-button:hover {
-  background-color: #e1e1e1;
+    display: flex;
+    flex-direction: column;
+    gap: 1.25vw;
 }
 
 .editable {
-  border: 0.05vw solid #ccc;
-  padding: 0.52vw;
-  min-height: 5.21vw;
-  border-radius: 0.16vw;
-  background-color: #fff;
-  overflow: auto;
-  white-space: pre-wrap;
-  line-height: 1.5;
+    min-height: 10vw;
+    border-radius: 0.83vw;
+    background-color: rgba(25, 32, 39, 1);
+    overflow: auto;
+    white-space: pre-wrap;
+    box-sizing: border-box;
+    line-height: 1.41vw;
+    font-weight: 400;
+    font-family: Inter, monospace;
+    font-size: 0.94vw;
+    color: white;
+    padding: 0.89vw 1.25vw 0.89vw 1.25vw;
+}
+
+.editable:focus {
+    outline: none;
 }
 
 .editable:empty::before {
-  content: attr(data-placeholder); /* Optional placeholder text */
-  color: #aaa;
+    content: attr(data-placeholder);
+    color: white;
 }
 
-.bold {
-  font-weight: bold;
+.stylesContainer {
+    display: flex;
+    flex-direction: row;
+    width: fit-content;
+    gap: 0.83vw;
+    align-items: center;
 }
 
-.italic {
-  font-style: italic;
+.styleIcon {
+    height: 1.04vw;
+    width: 1.04vw;
+    cursor: pointer;
 }
 
-.underline {
-  text-decoration: underline;
-}
-
-.strikethrough {
-  text-decoration: line-through;
+.spoilerIcon {
+    font-family: Inter, monospace;
+    font-size: 0.89vw;
+    font-weight: 400;
+    line-height: 1.35vw;
+    color: white;
+    margin: 0;
+    cursor: pointer;
+    user-select: none;
 }
 
 .spoiler {
-  background-color: black;
-  color: black;
-  text-shadow: 0 0 0.26vw white;
+    color: transparent;
+    background-color: black;
+    transition: all 0.3s ease;
+}
+
+.spoiler:hover {
+    background-color: transparent;
+    color: white;
 }

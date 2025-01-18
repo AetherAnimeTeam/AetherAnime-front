@@ -7,9 +7,9 @@ export const fetcher = async (url, config = null) => {
     return response.data;
 };
 
-export const post = async (url, data) => {
+export const post = async (url, data, headers) => {
     const response = await axios.post(url, data, {
-        headers: {'Content-Type': 'application/json',},
+        headers: {'Content-Type': 'application/json', ...headers},
         validateStatus: () => true });
     return {data: response.data, status: response.status};
 }

@@ -1,96 +1,89 @@
-import React, { useEffect, useRef, useState } from 'react';
-import styles from './CommentField.module.css';
+import React, {useRef} from "react";
+import DOMPurify from "dompurify";
+import classes from "./CommentField.module.css";
+import {ReactComponent as BoldIcon} from "../../assets/icons/bold.svg";
+import {ReactComponent as ItalicIcon} from "../../assets/icons/italic.svg";
+import {ReactComponent as StrokeIcon} from "../../assets/icons/stroke.svg";
+import {ReactComponent as UnderlineIcon} from "../../assets/icons/underline.svg";
+import Button from "../UI/Button/Button";
+import {useCookies} from "react-cookie";
 
-const CommentField = () => {
-  const [content, setContent] = useState('');
-  const editableRef = useRef(null);
+const ALLOWED_TAGS = ["b", "strong", "i", "em", "s", "u", "span", "br", "p", "div"];
+const ALLOWED_ATTRS = ["class"];
 
-  const allowedTags = ['b', 'i', 'u', 's', 'span', 'br'];
+export default function CommentField({ sendComment }) {
+    const editorRef = useRef(null);
 
-  const sanitizeHtml = (html) => {
-    const div = document.createElement('div');
-    div.innerHTML = html;
-    const sanitizeNode = (node) => {
-      if (node.nodeType === Node.ELEMENT_NODE && !allowedTags.includes(node.tagName.toLowerCase())) {
-        const textNode = document.createTextNode(node.textContent || '');
-        node.parentNode.replaceChild(textNode, node);
-      } else if (node.nodeType === Node.ELEMENT_NODE) {
-        Array.from(node.childNodes).forEach(sanitizeNode);
-      }
+    const sanitizeHtml = (dirtyHtml) => {
+        return DOMPurify.sanitize(dirtyHtml, {
+            ALLOWED_TAGS,
+            ALLOWED_ATTRS
+        });
     };
-    Array.from(div.childNodes).forEach(sanitizeNode);
-    return div.innerHTML.trim(); // Ensure no whitespace-only content
-  };
 
-  // Set caret position to the end
-  const setCaretToEnd = () => {
-    const el = editableRef.current;
-    if (!el) return;
-    const range = document.createRange();
-    const selection = window.getSelection();
-    range.selectNodeContents(el);
-    range.collapse(false); // Move caret to the end
-    selection.removeAllRanges();
-    selection.addRange(range);
-  };
+    const saveSelection = () => {
+        const sel = document.getSelection();
+        return sel && sel.rangeCount ? sel.getRangeAt(0) : null;
+    };
 
-  // Handle input changes
-  const handleInput = () => {
-    const currentContent = editableRef.current.innerHTML;
-    const sanitizedContent = sanitizeHtml(currentContent);
-    setContent(sanitizedContent);
+    const restoreSelection = (range) => {
+        if (!range) return;
+        const sel = document.getSelection();
+        sel.removeAllRanges();
+        sel.addRange(range);
+    };
 
-    if (!sanitizedContent) {
-      editableRef.current.innerHTML = '<br>';
-    }
-  };
+    const applyFormat = (tag) => {
+        const selection = window.getSelection();
+        if (!selection || !selection.rangeCount) return;
 
-  const handleKeyDown = (e) => {
-    if (e.key === 'Enter') {
-        console.log(content)
-      e.preventDefault();
-      document.execCommand('insertHTML', true, '<br>'); // Insert a new line
-    }
-  };
+        const range = saveSelection();
+        if (!range || range.collapsed) return;
 
-  useEffect(() => {
-    setCaretToEnd();
-  }, [content]);
+        const newNode = document.createElement(tag === "spoiler" ? "span" : tag);
+        if (tag === "spoiler") {
+            newNode.classList.add(classes.spoiler);
+        }
 
-  return (
-    <div className={styles.commentFieldContainer}>
-      <div className={styles.buttonContainer}>
-        <button onClick={() => document.execCommand('bold')} className={styles.bold}>
-          Bold
-        </button>
-        <button onClick={() => document.execCommand('italic')} className={styles.italic}>
-          Italic
-        </button>
-        <button onClick={() => document.execCommand('underline')} className={styles.underline}>
-          Underline
-        </button>
-        <button onClick={() => document.execCommand('strikeThrough')} className={styles.strikethrough}>
-          Cross Over
-        </button>
-        <button
-          onClick={() => document.execCommand('insertHTML', false, '<span class="spoiler">spoiler</span>')}
-          className={styles.spoiler}
-        >
-          Spoiler
-        </button>
-      </div>
-      <div
-        ref={editableRef}
-        id="editableDiv"
-        contentEditable
-        suppressContentEditableWarning
-        onInput={handleInput}
-        onKeyDown={handleKeyDown}
-        className={styles.editable}
-        dangerouslySetInnerHTML={{ __html: content || '<br>' }}
-      ></div>
-    </div>
-  );
-};
+        try {
+            range.surroundContents(newNode);
 
-export default CommentField;
+            editorRef.current.innerHTML = sanitizeHtml(editorRef.current.innerHTML);
+            restoreSelection(range);
+
+        } catch (error) {
+            console.error("Не удалось обернуть содержимое:", error);
+        }
+    };
+
+    const handleInput = (e) => {
+        const range = saveSelection();
+        const cleanHtml = sanitizeHtml(e.currentTarget.innerHTML);
+
+        if (cleanHtml !== e.currentTarget.innerHTML) e.currentTarget.innerHTML = cleanHtml;
+
+        restoreSelection(range);
+    };
+
+    return (
+        <div className={classes.commentFieldContainer}>
+            <div className={classes.stylesContainer}>
+                <BoldIcon onClick={() => applyFormat("b")} className={classes.styleIcon}/>
+                <ItalicIcon onClick={() => applyFormat("i")} className={classes.styleIcon}/>
+                <StrokeIcon onClick={() => applyFormat("s")} className={classes.styleIcon}/>
+                <UnderlineIcon onClick={() => applyFormat("u")} className={classes.styleIcon}/>
+                <p onClick={() => applyFormat("spoiler")} className={classes.spoilerIcon}>Spoiler</p>
+            </div>
+
+            <div
+                ref={editorRef}
+                contentEditable
+                className={classes.editable}
+                onInput={handleInput}
+            />
+
+            <Button text="Добавить" onClick={() => {sendComment(editorRef.current.innerHTML);
+                editorRef.current.innerHTML = ""}}/>
+        </div>
+    );
+}
