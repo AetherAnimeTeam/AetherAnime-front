@@ -4,6 +4,8 @@
     /*justify-items: center;*/
     height: 21.85vw;
     margin-top: 1.25vw;
+    will-change: opacity;
+    contain: layout;
 }
 
 .ListWrapper {

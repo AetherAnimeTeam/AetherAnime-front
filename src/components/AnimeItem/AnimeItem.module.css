@@ -5,6 +5,9 @@
     height: 100%;
     position: relative;
     transition: transform .3s;
+    will-change: transform, z-idex, opacity;
+    transform: translateZ(0);
+    contain: layout;
 }
 
 .ImageWrapper {
@@ -17,9 +20,6 @@
     max-height: 16.46vw;
     object-fit: cover;
     border-radius: 0.42vw;
-    -webkit-backface-visibility: hidden; /* Chrome, Safari, Opera */
-    -ms-transform: translateZ(0); /* IE 9 */
-    transform: translate3d(0.0vw, 0.0vw, 0.05vw);
     image-rendering: high-quality;
 }
 
@@ -27,7 +27,6 @@
     content: "";
     border-radius: 0.26vw;
     position: absolute;
-    z-index: -1;
     top: 0;
     left: 0;
     width: 100%;
@@ -45,7 +44,6 @@
 
 .AnimeItem:hover {
     transform: scale(1.1);
-    z-index: 5;
 }
 
 .AnimeItem h1 {
