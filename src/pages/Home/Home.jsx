@@ -18,7 +18,7 @@ const Home = () => {
     console.log(popularAnime)
     return (
         <div>
-            {/*<Banner />*/}
+            <Banner />
 
             <AnimeList animes={popularAnime}  name="Популярное" />
 

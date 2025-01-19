@@ -3,7 +3,7 @@ import AnimeItem from "../AnimeItem/AnimeItem";
 import classes from "./AnimeList.module.css";
 import { ReactComponent as Arrow } from "../../assets/icons/arrow.svg";
 
-const AnimeList = ({ animes, name}) => {
+const AnimeList = React.memo(({ animes, name}) => {
     const animeListRef = useRef(null);
     const [showLeftArrow, setShowLeftArrow] = useState(false);
     const [showRightArrow, setShowRightArrow] = useState(true);
@@ -80,6 +80,6 @@ const AnimeList = ({ animes, name}) => {
             </div>
         </div>
     );
-};
+});
 
 export default AnimeList;

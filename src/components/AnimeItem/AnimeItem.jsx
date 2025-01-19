@@ -3,7 +3,7 @@ import classes from "./AnimeItem.module.css";
 import {useNavigate} from "react-router-dom";
 import Score from "../UI/Score/Score";
 
-const AnimeItem = ({anime, style}) => {
+const AnimeItem = React.memo(({anime, style}) => {
     // TODO: add width based preview selection
     const router = useNavigate()
 
@@ -20,6 +20,6 @@ const AnimeItem = ({anime, style}) => {
 
         </div>
     );
-};
+});
 
 export default AnimeItem;
