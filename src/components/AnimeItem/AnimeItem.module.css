@@ -36,7 +36,7 @@
     -webkit-box-shadow: 5.21vw 0 2.6vw -0.21vw rgba(14, 22, 31, 0.5), -5.21vw 0 2.6vw -0.21vw rgba(14, 22, 31, 0.5);
     -moz-box-shadow: 5.21vw 0 2.6vw -0.21vw rgba(14, 22, 31, 0.5), -5.21vw 0 2.6vw -0.21vw rgba(14, 22, 31, 0.5);
     opacity: 0;
-    transition: all 0.3s;
+    transition: opacity 0.3s;
 }
 
 .AnimeItem:hover .ImageWrapper::after {
