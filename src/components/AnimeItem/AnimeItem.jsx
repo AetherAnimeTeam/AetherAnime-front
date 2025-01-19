@@ -1,25 +1,30 @@
-import React from 'react';
+import React, { useCallback } from 'react';
 import classes from "./AnimeItem.module.css";
-import {useNavigate} from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import Score from "../UI/Score/Score";
 
-const AnimeItem = React.memo(({anime, style}) => {
-    // TODO: add width based preview selection
-    const router = useNavigate()
+const AnimeItem = React.memo(({ anime, style }) => {
+  const navigate = useNavigate();
 
-    return (
-        <div
-            onClick={() => { router(`/anime/${anime.id}`) }}
-            className={classes.AnimeItem}>
+  const handleClick = useCallback(() => {
+    navigate(`/anime/${anime.id}`);
+  }, [navigate, anime.id]);
 
-            {anime.score !== 0 ? <Score score={anime.score}/> : null }
-            <div className={classes.ImageWrapper}>
-                <img src={anime.poster.previewUrl} alt={"preview"}></img>
-            </div>
-            <h1>{anime.russian}</h1>
+  return (
+    <div
+      className={classes.AnimeItem}
+      style={style}
+      onClick={handleClick}
+    >
+      {anime.score !== 0 ? <Score score={anime.score} /> : null}
 
-        </div>
-    );
+      <div className={classes.ImageWrapper}>
+        <img src={anime.poster.previewUrl} alt="preview" />
+      </div>
+
+      <h1>{anime.russian}</h1>
+    </div>
+  );
 });
 
 export default AnimeItem;
