@@ -1,25 +1,25 @@
 .CommentContainer {
     display: flex;
     flex-direction: column;
-    gap: 0.84vw;
-    margin-left: 2.6vw;
-    margin-right: 2.6vw;
+    gap: 0.84rem;
+    margin-left: 2.6rem;
+    margin-right: 2.6rem;
 }
 
 .content {
-    min-height: 5vw;
-    border-radius: 0.83vw;
+    min-height: 5rem;
+    border-radius: 0.83rem;
     background-color: rgba(25, 32, 39, 1);
     overflow: auto;
     white-space: pre-wrap;
     box-sizing: border-box;
-    line-height: 1.41vw;
+    line-height: 1.41rem;
     font-weight: 400;
 
     font-family: Inter, monospace;
-    font-size: 0.94vw;
+    font-size: 0.94rem;
     color: white;
-    padding: 0.89vw 1.25vw 0.89vw 1.25vw;
+    padding: 0.89rem 1.25rem 0.89rem 1.25rem;
 }
 
 .CommentContainer h3 {
@@ -28,5 +28,5 @@
     font-weight: 500;
     font-size: 20px;
     line-height: 24px;
-    margin: 2.66vw 0 0 0;
+    margin: 2.66rem 0 0 0;
 }

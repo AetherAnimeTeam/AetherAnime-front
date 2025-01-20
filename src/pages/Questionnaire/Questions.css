@@ -14,8 +14,8 @@
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  padding: 1.04vw;
-  width: 20.83vw;
+  padding: 1.04rem;
+  width: 20.83rem;
   max-width: 80%;
   text-align: center;
 }
@@ -24,7 +24,7 @@
     color: red !important;
     /*margin-top: !important;*/
     /*margin-top: 30%;*/
-    margin-top: 3.12vw !important;
+    margin-top: 3.12rem !important;
 }
 
 .modal-content p {
@@ -35,13 +35,13 @@
     align-self: center;
     padding: 0;
     margin-left: 0;
-    margin-top: 5.21vw;
-    font-size: 0.94vw;
+    margin-top: 5.21rem;
+    font-size: 0.94rem;
     z-index: 1;
 }
 
 .modal-content h2 {
-  margin-bottom: 5.21vw !important;
+  margin-bottom: 5.21rem !important;
   align-self: center;
   width: 100%;
 }
@@ -50,22 +50,22 @@
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-    gap: 0.52vw;
-    margin-top: 1.04vw;
+    gap: 0.52rem;
+    margin-top: 1.04rem;
 }
 
 .modal-content button {
     position: relative;
     background: rgba(0, 0, 0, 0.0);
 
-    padding: 0.52vw 1.04vw;
+    padding: 0.52rem 1.04rem;
 
-    /*margin-left: 0.52vw;*/
+    /*margin-left: 0.52rem;*/
     color: black;
-    font-size: 1.25vw;
-    border: 0.05vw solid black;
-    margin-bottom: 0.26vw;
-    border-radius: 0.21vw;
+    font-size: 1.25rem;
+    border: 0.05rem solid black;
+    margin-bottom: 0.26rem;
+    border-radius: 0.21rem;
     z-index: 1;
     align-self: center;
 }
@@ -75,40 +75,40 @@
     position: relative;
     background: rgba(0, 0, 0, 0.0);
 
-    padding: 0.52vw 1.04vw;
+    padding: 0.52rem 1.04rem;
 
-    /*margin-left: 0.52vw;*/
+    /*margin-left: 0.52rem;*/
     color: black;
-    font-size: 1.25vw;
-    border: 0.05vw solid black;
+    font-size: 1.25rem;
+    border: 0.05rem solid black;
     margin-bottom: 0 !important;
-    margin-top: 0.52vw !important;
-    margin-left: 0.52vw;
-    border-radius: 0.21vw;
+    margin-top: 0.52rem !important;
+    margin-left: 0.52rem;
+    border-radius: 0.21rem;
     z-index: 1;
     align-self: center;
     text-decoration: none;
 }
 
 .modal-content.close {
-    margin-right: 5.21vw;
+    margin-right: 5.21rem;
 }
 
 input {
-    padding: 0.42vw 0;
+    padding: 0.42rem 0;
     width: 100%;
-    margin-top: 0.52vw;
-    margin-bottom: 1.04vw;
-    border-radius: 0.21vw;
+    margin-top: 0.52rem;
+    margin-bottom: 1.04rem;
+    border-radius: 0.21rem;
     text-align: center;
-    border: 0.05vw solid black;
+    border: 0.05rem solid black;
     color: black;
 }
 ul {
     margin-left: 40%;
-    margin-top: -3.65vw;
+    margin-top: -3.65rem;
     width: 100%;
     text-align: center;
     transform: translate(-50%, 0);
 }
-li { display: block; margin-top: 0.52vw}
+li { display: block; margin-top: 0.52rem}

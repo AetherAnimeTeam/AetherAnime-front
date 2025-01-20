@@ -2,7 +2,7 @@
     position: absolute;
     display: flex;
     flex-direction: column;
-    width: 18.23vw;
+    width: 18.23rem;
     max-height: 500px;
     overflow-y: scroll;
     background: rgba(25, 32, 39, 1);

@@ -1,7 +1,7 @@
 .Header {
     display: flex;
     justify-content: space-between;
-    height: 3.65vw;
+    height: 3.65rem;
     align-items: center;
     background-color: rgba(14, 22, 31, 1);
     color: white;
@@ -10,37 +10,37 @@
 }
 
 .Logo:visited, .Logo:active, .Logo:hover, .Logo {
-    margin-left: 2.6vw;
-    width: 10.63vw;
-    height: 1.92vw;
+    margin-left: 2.6rem;
+    width: 10.63rem;
+    height: 1.92rem;
 }
 
 .Main {
     display: flex;
-    height: 2.08vw;
+    height: 2.08rem;
     width: fit-content;
-    margin-right: 2.6vw;
-    gap: 1.25vw;
+    margin-right: 2.6rem;
+    gap: 1.25rem;
     align-items: center;
     justify-content: center;
     box-sizing: border-box;
 }
 
 .Main input {
-    height: 2.08vw;
-    width: 18.23vw;
-    border-radius: 0.83vw;
+    height: 2.08rem;
+    width: 18.23rem;
+    border-radius: 0.83rem;
     border: none;
-    max-width: 20.83vw;
+    max-width: 20.83rem;
     background: rgba(42, 46, 50, 1);
     color: white;
-    font-size: 0.94vw;
+    font-size: 0.94rem;
     font-family: Inter, monospace;
     font-weight: 400;
-    line-height: 1.41vw;
+    line-height: 1.41rem;
     margin: 0 0 0 0;
     box-sizing: border-box;
-    padding: 0.21vw 3.65vw 0.21vw 0;
+    padding: 0.21rem 3.65rem 0.21rem 0;
 }
 
 .Main input::placeholder {
@@ -48,8 +48,8 @@
 }
 
 .Main .icon {
-    width: 1.25vw;
-    height: 1.25vw;
+    width: 1.25rem;
+    height: 1.25rem;
 }
 
 .Search {
@@ -59,26 +59,26 @@
 .User {
     display: flex;
     flex-direction: row;
-    height: 2.08vw;
+    height: 2.08rem;
     width: fit-content;
-    border-radius: 0.83vw;
+    border-radius: 0.83rem;
     border: none;
-    max-width: 20.83vw;
+    max-width: 20.83rem;
     background: rgba(42, 46, 50, 1);
     color: white;
     align-items: center;
     justify-content: center;
-    gap: 0.42vw;
-    padding: 0 1.3vw 0 1.3vw;
-    /*margin-right: 5.21vw;*/
+    gap: 0.42rem;
+    padding: 0 1.3rem 0 1.3rem;
+    /*margin-right: 5.21rem;*/
     cursor: pointer;
     /*box-sizing: border-box;*/
 }
 
 .User p {
-    font-size: 0.94vw;
+    font-size: 0.94rem;
     font-weight: 400;
-    line-height: 1.41vw;
+    line-height: 1.41rem;
     font-family: Inter, monospace;
     color: white;
     user-focus: none;
@@ -98,15 +98,15 @@
 }
 
 .ModalContent {
-    width: 20.83vw;
-    height: 23.96vw;
+    width: 20.83rem;
+    height: 23.96rem;
     display: flex;
     flex-direction: column;
     align-items: center;
     background: rgba(69, 69, 69, 0.7);
-    backdrop-filter: blur(0.52vw);
-    gap: 1.67vw;
-    border-radius: 1.25vw;
+    backdrop-filter: blur(0.52rem);
+    gap: 1.67rem;
+    border-radius: 1.25rem;
     position: relative;
 }
 
@@ -114,14 +114,14 @@
     color: white;
     font-family: Inter, monospace;
     font-weight: 500;
-    font-size: 1.25vw;
-    line-height: 1.51vw;
-    margin-top: 1.67vw;
+    font-size: 1.25rem;
+    line-height: 1.51rem;
+    margin-top: 1.67rem;
 }
 
 
-@media (max-width: 26.04vw) {
+@media (max-width: 26.04rem) {
     .Logo:visited, .Logo:active, .Logo:hover, .Logo {
-        font-size: 0.83vw;
+        font-size: 0.83rem;
     }
 }

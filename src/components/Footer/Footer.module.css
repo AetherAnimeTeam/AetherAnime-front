@@ -1,5 +1,5 @@
 .Footer {
-    height: 5.21vw;
+    height: 5.21rem;
     display: flex;
     background-color: rgba(14, 22, 31, 1);
     justify-content: center;
@@ -7,14 +7,14 @@
     /*align-content: flex-end;*/
     margin-top: auto;
     z-index: 9999;
-    gap: 0.42vw;
+    gap: 0.42rem;
 }
 
 .Text {
     font-family: Inter, monospace;
     font-weight: 400;
-    font-size: 0.78vw;
-    line-height: 0.94vw;
+    font-size: 0.78rem;
+    line-height: 0.94rem;
     color: rgba(134, 134, 134, 1);
     align-self: center;
     margin: 0 0 0 0;
@@ -24,20 +24,20 @@
     display: flex;
     flex-direction: row;
     align-self: center;
-    gap: 0.52vw;
+    gap: 0.52rem;
 }
 
 .Link {
     font-family: Inter, monospace;
     font-weight: 400;
-    font-size: 0.78vw;
-    line-height: 0.94vw;
+    font-size: 0.78rem;
+    line-height: 0.94rem;
     color: rgba(134, 134, 134, 1);
     text-decoration: none;
     align-self: center;
 }
 
 .Icon {
-    height: 1.56vw;
-    width: 1.56vw;
+    height: 1.56rem;
+    width: 1.56rem;
 }

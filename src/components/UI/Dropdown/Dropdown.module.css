@@ -1,0 +1,33 @@
+.dropdownContainer {
+    display: flex;
+    flex-direction: column;
+    background: rgba(25, 32, 39, 1);
+    border-radius: 16px;
+    position: absolute;
+    right: 0;
+    top: 0;
+    margin-top: 0.16px;
+    margin-right: 2rem;
+}
+
+.dropdownItem {
+    display: flex;
+    flex-direction: row;
+    gap: 12px;
+    align-items: center;
+    width: 187px;
+    padding: 0 16px;
+}
+
+.dropdownItem:hover {
+    background-color: rgba(17, 20, 28, 1);
+}
+
+.dropdownText {
+    color: white;
+    font-size: 18px;
+    font-weight: 400;
+    line-height: 27px;
+    font-family: Inter, monospace;
+    user-select: none;
+}

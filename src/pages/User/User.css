@@ -5,17 +5,17 @@
 
 .Photo {
     position: absolute;
-    width: 10.42vw;
-    height: 10.42vw;
-    border-radius: 2.08vw;
-    border: 0.16vw solid rgba(255, 255, 255, 0.1);
-    margin-left: 1.3vw;
-    margin-top: 17.71vw;
+    width: 10.42rem;
+    height: 10.42rem;
+    border-radius: 2.08rem;
+    border: 0.16rem solid rgba(255, 255, 255, 0.1);
+    margin-left: 1.3rem;
+    margin-top: 17.71rem;
 }
 
 .Banner {
     width: 100%;
-    height: 31.25vw;
+    height: 31.25rem;
     object-fit: cover;
 }
 
@@ -23,30 +23,30 @@
     position: absolute;
     width: 100%;
     height: 100%;
-    margin-top: 22.92vw;
+    margin-top: 22.92rem;
     background-color: rgba(14, 22, 31, 1);
-    border-radius: 1.25vw 1.25vw 0 0;
+    border-radius: 1.25rem 1.25rem 0 0;
 }
 
 .InfoContainer {
     position: absolute;
     display: flex;
     flex-direction: row;
-    margin-top: 22.4vw;
-    margin-left: 13.02vw;
+    margin-top: 22.4rem;
+    margin-left: 13.02rem;
 }
 
 .Credentials {
     display: flex;
     flex-direction: column;
-    width: 65.1vw;
-    margin-right: 1.3vw;
+    width: 65.1rem;
+    margin-right: 1.3rem;
 }
 
 .Name {
     font-family: Inter, monospace;
-    font-size: 1.67vw;
-    line-height: 1.98vw;
+    font-size: 1.67rem;
+    line-height: 1.98rem;
     font-weight: 500;
     color: white;
     margin-bottom: 0;
@@ -55,20 +55,20 @@
 .Status {
     color: rgba(81, 222, 206, 1);
     font-weight: 400;
-    font-size: 0.78vw;
-    line-height: 0.94vw;
+    font-size: 0.78rem;
+    line-height: 0.94rem;
     font-family: Inter, monospace;
-    margin-top: 0.21vw;
+    margin-top: 0.21rem;
 }
 
 .SocialNetworks {
     display: flex;
     flex-direction: row;
     align-self: center;
-    gap: 1.15vw;
+    gap: 1.15rem;
 }
 
 .SocialIcon {
-    width: 1.56vw;
-    height: 1.56vw;
+    width: 1.56rem;
+    height: 1.56rem;
 }
