@@ -1,13 +1,14 @@
 .Banner {
     display: flex;
     overflow: hidden;
-    height: 31.25rem;
+    height: 30rem;
     width: 100%;
+    position: relative;
 }
 
 .Banner img {
     width: 100%;
-    height: 31.25rem;
+    height: 30rem;
     object-fit: cover;
 }
 
@@ -15,50 +16,187 @@
     content: "";
     position: absolute;
     width: 100%;
-    height: 31.25rem;
-    background: linear-gradient(to bottom, rgba(0, 0, 0, 0), rgba(13, 12, 19, 1));
+    height: 30rem;
+    background: linear-gradient(to bottom, rgba(0, 0, 0, 0), rgba(14, 22, 31, 1));
+    z-index: 1;
 }
 
 .Banner .Card {
     display: flex;
-    /*height: 12.24rem;*/
-    width: 32.03rem;
+    width: 35rem;
     flex-direction: column;
     align-self: flex-end;
     position: absolute;
     gap: 0.83rem;
     margin: 0 0 1.25rem 2.6rem;
+    z-index: 2;
 }
 
 .Card h1 {
     color: white;
     font-family: Inter, monospace;
     font-weight: 600;
-    font-size: 2.5rem;
+    font-size: 2.8rem;
     line-height: 2.97rem;
-    margin: 0 0 0 0;
+    margin: 0;
 }
 
 .Card p {
     color: white;
     font-family: Inter, monospace;
     font-weight: 400;
-    font-size: 0.94rem;
+    font-size: 1rem;
     line-height: 1.41rem;
-    margin: 0 0 0 0;
+    margin: 0;
 }
 
-.Card .AdditionalInfo {
+.Card .additionalInfo {
     display: flex;
     flex-direction: row;
+    align-items: center;
+    gap: 1rem;
 }
 
-@media (max-width: 26.04rem) {
+.scoreBanner {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding: 0.35rem 0.7rem;
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(2rem);
+    border-radius: 0.55rem;
+    border: 0.08rem solid rgba(194, 194, 194, 0.1);
+    gap: 0.4rem;
+}
+
+.scoreBanner img {
+    width: 1rem;
+    height: 1rem;
+}
+
+.scoreBanner span {
+    color: white;
+    font-family: "Inter", monospace;
+    font-size: 0.9rem;
+    font-weight: 600;
+}
+
+.year {
+    color: white;
+    font-family: "Inter", monospace;
+    font-size: 0.9rem;
+    font-weight: 500;
+}
+
+.genre {
+    color: white;
+    font-family: "Inter", monospace;
+    font-size: 0.9rem;
+    font-weight: 500;
+}
+
+.buttonsContainer {
+    display: flex;
+    flex-direction: row;
+    gap: 1rem;
+}
+
+.watchButton {
+    width: 300px;
+    height: 45px;
+    max-height: 50px;
+    gap: 8px;
+    border-radius: 0.9rem;
+    background: #2F80ED;
+    color: white;
+    font-family: "Inter", monospace;
+    font-size: 1rem;
+    font-weight: 500;
+    border: none;
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+
+.watchButton:hover {
+    background: #1c6bb8;
+}
+
+.trailerButton {
+    width: 300px;
+    height: 45px;
+    max-width: 300px;
+    max-height: 50px;
+    gap: 8px;
+    border-radius: 0.9rem;
+    background: rgba(70, 70, 70, 0.5); 
+    backdrop-filter: blur(2.9px);
+    color: white;
+    font-family: "Inter", monospace;
+    font-size: 1rem;
+    font-weight: 500;
+    border: none;
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+
+.trailerButton:hover {
+    background: rgba(70, 70, 70, 0.7);
+}
+
+@media (max-width: 768px) {
+    .Banner {
+        height: 20rem;
+    }
+
     .Banner img {
-        height: 10.42rem;
+        height: 20rem;
     }
 
     .Banner::before {
-        height: 10.42rem;
+        height: 20rem;
+    }
+
+    .Banner .Card {
+        width: 90%;
+        max-width: 26rem;
+        margin: 0 0 1rem 1rem;
+    }
+
+    .Card h1 {
+        font-size: 1.5rem;
+        line-height: 1.8rem;
+    }
+
+    .Card p {
+        font-size: 0.8rem;
+        line-height: 1.2rem;
+    }
+
+    .scoreBanner {
+        padding: 0.3rem 0.6rem;
+    }
+
+    .scoreBanner img {
+        width: 0.8rem;
+        height: 0.8rem;
+    }
+
+    .scoreBanner span {
+        font-size: 0.8rem;
+    }
+
+    .year,
+    .genre {
+        font-size: 0.8rem;
+    }
+
+    .buttonsContainer {
+        gap: 0.5rem;
+    }
+
+    .watchButton,
+    .trailerButton {
+        height: 40px;
+        font-size: 0.9rem;
     }
 }

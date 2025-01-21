@@ -9,6 +9,7 @@ import useSWR from "swr";
 import {fetcher} from "../../API/Base";
 import {useNavigate, useParams} from "react-router-dom";
 import {useCookies} from "react-cookie";
+import StatisticBlock from "../../components/StatisticBlock/StatisticBlock";
 
 const User = () => {
     const params = useParams()
@@ -28,13 +29,14 @@ const User = () => {
 
     console.log(userData)
 
-    const data = {
+    let data = {
         "Ужасы": 80,
         "Драма": 70,
         "Фантастика": 60,
         "Романтика": 20,
         "Мелодрама": 15,
         "Триллер": 5};
+    data = null;
 
     return (
         <div className="Container">
@@ -50,10 +52,14 @@ const User = () => {
                     <DiscordIcon className="SocialIcon"/>
                     <TelegramIcon className="SocialIcon"/>
                 </div>
-
-                <StatusLine data={data} />
             </div>
-            <button style={{zIndex: 1}} onClick={handleLogout}>Выйти из аккаунта</button>
+            <div className="MenuContainer">
+
+            </div>
+            <div className="Statistics">
+                <StatisticBlock blockName="Жанры" data={data} className="GenresBlock"/>
+                <StatisticBlock blockName="Статус" data={data} className="GenresBlock"/>
+            </div>
         </div>
     );
 };

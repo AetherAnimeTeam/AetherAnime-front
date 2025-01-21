@@ -7,7 +7,7 @@
     position: absolute;
     width: 10.42rem;
     height: 10.42rem;
-    border-radius: 2.08rem;
+    border-radius: 105px;
     border: 0.16rem solid rgba(255, 255, 255, 0.1);
     margin-left: 1.3rem;
     margin-top: 17.71rem;
@@ -45,8 +45,8 @@
 
 .Name {
     font-family: Inter, monospace;
-    font-size: 1.67rem;
-    line-height: 1.98rem;
+    font-size: 32px;
+    line-height: 38px;
     font-weight: 500;
     color: white;
     margin-bottom: 0;
@@ -61,6 +61,15 @@
     margin-top: 0.21rem;
 }
 
+.Statistics {
+    display: flex;
+    flex-direction: row;
+    margin-left: 50px;
+    margin-right: 50px;
+    gap: 8px;
+    z-index: 2;
+}
+
 .SocialNetworks {
     display: flex;
     flex-direction: row;
@@ -71,4 +80,17 @@
 .SocialIcon {
     width: 1.56rem;
     height: 1.56rem;
+}
+
+.MenuContainer {
+    display: flex;
+    flex-direction: row;
+    gap: 16px;
+    margin-left: 40px;
+}
+
+.MenuItemContainer {
+    display: flex;
+    flex-direction: column;
+
 }

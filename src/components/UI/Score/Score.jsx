@@ -1,6 +1,6 @@
 import React from 'react';
 import classes from "./Score.module.css";
-import {ReactComponent as StarIcon} from "../../../assets/icons/star.svg";
+import {ReactComponent as StarIcon} from "../../../assets/icons/star_filled.svg";
 
 const Score = ({ score }) => {
     return (

@@ -1,7 +1,6 @@
 .AnimeListContainer {
     display: flex;
     flex-direction: column;
-    /*justify-items: center;*/
     height: 21.85rem;
     margin-top: 1.25rem;
     will-change: opacity;
@@ -12,7 +11,6 @@
     flex-direction: row;
     justify-items: center;
     align-items: stretch;
-    /*overflow: hidden;*/
     width: 100%;
     height: auto;
     padding-bottom: 1rem;
@@ -42,7 +40,6 @@
     padding-left: 2.6rem;
 }
 
-/* Hide scrollbar for WebKit browsers */
 .AnimeList::-webkit-scrollbar {
     display: none;
 }
@@ -57,7 +54,6 @@
     margin-top: 1rem;
     width: 1.77rem;
     opacity: 0;
-    /*transition: opacity 0.1s ease;*/
     cursor: pointer;
     z-index: 10;
     transition: opacity 0.6s;
@@ -85,3 +81,24 @@
     cursor: default;
 }
 
+@media (max-width: 768px) {
+    .AnimeListContainer {
+        height: auto; 
+        margin-top: 1rem; 
+    }
+
+    .AnimeListType {
+        margin: 0 0 0 1rem; 
+        font-size: 1rem; 
+    }
+
+    .AnimeList {
+        gap: 0.5rem; 
+        padding-right: 1rem; 
+        padding-left: 1rem;
+    }
+
+    .ArrowContainer {
+        display: none;
+    }
+}

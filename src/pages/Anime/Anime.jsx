@@ -15,6 +15,7 @@ import {useCookies} from "react-cookie";
 import {getComments, sendComment} from "../../API/CommentService";
 import Comment from "../../components/UI/Comment/Comment";
 import {getUserDataById} from "../../API/UserService";
+import Loader from "../../components/Loader/Loader"; 
 
 const Anime = () => {
     const params = useParams()
@@ -35,7 +36,7 @@ const Anime = () => {
     }
 
     if(metaError || popularAnimeError || commentsError ) return <div>Error</div>
-    if(!animeMeta || !popularAnime || !comments) return <div>Loading...</div>
+    if(!animeMeta || !popularAnime || !comments) return <Loader />;
 
     return (
         <div className="Container">

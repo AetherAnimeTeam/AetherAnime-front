@@ -5,7 +5,7 @@
     height: 100%;
     position: relative;
     transition: transform .3s;
-    will-change: transform, z-idex, opacity;
+    will-change: transform, z-index, opacity;
     transform: translateZ(0);
     contain: layout;
 }
@@ -53,9 +53,24 @@
     font-family: "Inter", monospace;
     font-size: 0.83rem;
     font-weight: 500;
-
     display: -webkit-box;
     -webkit-line-clamp: 2;
     overflow: hidden;
     -webkit-box-orient: vertical;
+}
+
+@media (max-width: 768px) {
+    .ImageWrapper img {
+        width: 8rem; 
+        height: 12rem;
+        max-height: 12rem; 
+    }
+
+    .AnimeItem h1 {
+        font-size: 0.75rem; 
+    }
+
+    .AnimeItem:hover {
+        transform: scale(1.05); 
+    }
 }

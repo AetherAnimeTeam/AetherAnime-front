@@ -5,22 +5,22 @@
     top: 0.21rem;
     left: 0.21rem;
     flex-direction: row;
-    padding: 0.1rem 0.42rem 0.1rem 0.31rem;
-    width: 2.5rem;
-    height: 1.04rem;
-    background: rgba(0, 0, 0, 0.5);
-    backdrop-filter: blur(1.0.26rem);
-    border-radius: 0.42rem;
-    border: 0.05rem solid rgba(194, 194, 194, 0.1);
+    padding: 0.2rem;
+    width: 3rem;
+    height: 1.2rem;
+    background: rgba(0, 0, 0, 0.4);
+    backdrop-filter: blur(2rem);
+    border-radius: 0.55rem;
+    border: 0.08rem solid rgba(194, 194, 194, 0.1);
     justify-content: center;
+    align-items: center;
     z-index: 2;
 }
 
 .Score p {
     color: white;
     font-family: "Inter", monospace;
-    font-size: 0.62rem;
+    font-size: 0.8rem;
     font-weight: 600;
-    margin-left: 0.26rem;
-    margin-top: 0.16rem;
+    margin-left: 0.30rem;
 }

@@ -1,105 +1,147 @@
-.Header {
+.header {
     display: flex;
     justify-content: space-between;
-    height: 3.65rem;
     align-items: center;
+    height: 3.65rem;
     background-color: rgba(14, 22, 31, 1);
     color: white;
-    padding: 0;
+    padding: 0 2rem;
     box-sizing: border-box;
 }
 
-.Logo:visited, .Logo:active, .Logo:hover, .Logo {
-    margin-left: 2.6rem;
-    width: 10.63rem;
-    height: 1.92rem;
-}
-
-.Main {
+.logoAndSearchContainer {
     display: flex;
-    height: 2.08rem;
-    width: fit-content;
-    margin-right: 2.6rem;
-    gap: 1.25rem;
     align-items: center;
-    justify-content: center;
-    box-sizing: border-box;
+    gap: 1rem;
 }
 
-.Main input {
-    height: 2.08rem;
-    width: 18.23rem;
-    border-radius: 0.83rem;
-    border: none;
-    max-width: 20.83rem;
-    background: rgba(42, 46, 50, 1);
+.logoContainer {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    text-decoration: none;
     color: white;
-    font-size: 0.94rem;
     font-family: Inter, monospace;
-    font-weight: 400;
-    line-height: 1.41rem;
-    margin: 0 0 0 0;
-    box-sizing: border-box;
-    padding: 0.21rem 3.65rem 0.21rem 0;
+    font-size: 1.25rem;
+    font-weight: 500;
 }
 
-.Main input::placeholder {
-    color: rgba(255, 255, 255, 1);
+.logoText {
+    transition: opacity 0.2s ease;
 }
 
-.Main .icon {
-    width: 1.25rem;
-    height: 1.25rem;
+.logoContainer:hover .logoText {
+    opacity: 0.8;
 }
 
-.Search {
+.searchContainer {
+    width: 320px;
+    display: flex;
+    align-items: center;
     position: relative;
 }
 
-.User {
+.searchContainer input {
+    width: 100%;
+    height: 36px;
+    border-radius: 0.9rem;
+    border: none;
+    background: #2a2e32;
+    color: white;
+    font-size: 14px;
+    font-family: Inter, monospace;
+    font-weight: 400;
+    padding: 0 40px 0 15px;
+    box-sizing: border-box;
+}
+
+.searchContainer input:hover {
+    background: #3a3e42;
+}
+
+.searchContainer input::placeholder {
+    color: rgba(255, 255, 255, 1);
+}
+
+.searchIcon {
+    position: absolute;
+    right: 15px;
+    width: 16px;
+    height: 16px;
+    pointer-events: none;
+}
+
+.iconsContainer {
+    display: flex;
+    gap: 1.25rem;
+    align-items: center;
+}
+
+.iconLink {
+    display: flex;
+    align-items: center;
+    transition: transform 0.2s ease, fill 0.2s ease;
+}
+
+.iconLink:hover .icon {
+    fill: white;
+    transform: scale(1.1);
+}
+
+.icon {
+    width: 1.25rem;
+    height: 1.25rem;
+    transition: transform 0.2s ease, fill 0.2s ease;
+}
+
+.loginButton {
     display: flex;
     flex-direction: row;
-    height: 2.08rem;
+    height: 36px;
     width: fit-content;
-    border-radius: 0.83rem;
+    border-radius: 0.9rem;
     border: none;
-    max-width: 20.83rem;
-    background: rgba(42, 46, 50, 1);
+    background: #2a2e32;
     color: white;
+    font-size: 14px;
+    font-family: Inter, monospace;
+    font-weight: 400;
     align-items: center;
     justify-content: center;
     gap: 0.42rem;
-    padding: 0 1.3rem 0 1.3rem;
-    /*margin-right: 5.21rem;*/
+    padding: 0 15px;
     cursor: pointer;
-    /*box-sizing: border-box;*/
+    box-sizing: border-box;
 }
 
-.User p {
-    font-size: 0.94rem;
+.loginButton p {
+    font-size: 14px;
     font-weight: 400;
     line-height: 1.41rem;
     font-family: Inter, monospace;
     color: white;
-    user-focus: none;
+    margin: 0;
 }
 
-.Modal {
+.loginButton:hover {
+    background: #3a3e42;
+}
+
+.modalOverlay {
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(0,0,0,0.5);
+    background-color: rgba(0, 0, 0, 0.5);
     display: flex;
     justify-content: center;
     align-items: center;
     z-index: 1000;
 }
 
-.ModalContent {
-    width: 20.83rem;
-    height: 23.96rem;
+.modalContent {
+    width: 21rem;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -110,7 +152,7 @@
     position: relative;
 }
 
-.ModalContent h2 {
+.modalContent h2 {
     color: white;
     font-family: Inter, monospace;
     font-weight: 500;
@@ -119,9 +161,149 @@
     margin-top: 1.67rem;
 }
 
+.hamburgerMenu {
+    cursor: pointer;
+    display: none;
+    margin-left: auto;
+}
 
-@media (max-width: 26.04rem) {
-    .Logo:visited, .Logo:active, .Logo:hover, .Logo {
-        font-size: 0.83rem;
+.hamburgerMenu input {
+    display: none;
+}
+
+.hamburgerIcon {
+    height: 2em;
+    width: 2em;
+    transition: transform 0.3s ease;
+}
+
+.hamburgerMenu input:checked + .hamburgerIcon {
+    animation: tiltAndBounce 0.3s ease forwards;
+}
+
+@keyframes tiltAndBounce {
+    0% {
+        transform: rotate(0deg) scale(1);
+    }
+    50% {
+        transform: rotate(-10deg) scale(0.9);
+    }
+    75% {
+        transform: rotate(-5deg) scale(0.95);
+    }
+    100% {
+        transform: rotate(-7deg) scale(0.92);
+    }
+}
+
+.hamburgerMenu input:not(:checked) + .hamburgerIcon {
+    animation: resetTiltAndBounce 0.3s ease forwards;
+}
+
+@keyframes resetTiltAndBounce {
+    0% {
+        transform: rotate(-7deg) scale(0.92);
+    }
+    50% {
+        transform: rotate(5deg) scale(1.05);
+    }
+    100% {
+        transform: rotate(0deg) scale(1);
+    }
+}
+
+.mobileMenu {
+    position: fixed;
+    bottom: -100%; 
+    left: 0;
+    right: 0; 
+    width: 100%; 
+    background: rgba(42, 46, 50, 0.9);
+    backdrop-filter: blur(10px);
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: 0.2rem;
+    padding: 0.3rem;
+    transition: bottom 0.3s ease;
+    z-index: 1000;
+}
+
+
+.mobileMenuOpen {
+    bottom: 0;
+}
+
+.mobileMenuItem {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.25rem;
+    color: white;
+    text-decoration: none;
+    font-size: 0.7rem;
+    padding: 0.4rem 0.1rem;
+    border-radius: 0.5rem;
+    transition: background 0.2s ease;
+    min-width: 80px;
+    text-align: center;
+}
+
+.mobileMenuItem:hover {
+    background: rgba(255, 255, 255, 0.1);
+}
+
+.mobileMenuIcon {
+    width: 1.25rem;
+    height: 1.25rem;
+}
+
+@media (max-width: 1024px) {
+    .iconsContainer {
+        display: none;
+    }
+
+    .hamburgerMenu {
+        display: flex;
+        align-items: center;
+    }
+
+    .searchContainer {
+        max-width: 300px;
+    }
+}
+
+@media (max-width: 768px) {
+    .header {
+        padding: 0 1rem;
+    }
+
+    .logoContainer {
+        display: none;
+    }
+
+    .searchContainer {
+        max-width: 350px;
+    }
+
+    .hamburgerMenu {
+        margin-left: 0;
+    }
+}
+
+@media (max-width: 480px) {
+    .searchContainer {
+        flex-grow: 1; 
+        width: auto;
+        margin-right: 1rem;
+    }
+
+    .searchContainer {
+        flex-grow: 1; 
+    }
+
+    .logoAndSearchContainer {
+        flex-grow: 1; 
     }
 }
