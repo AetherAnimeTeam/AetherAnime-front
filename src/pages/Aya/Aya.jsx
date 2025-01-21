@@ -98,7 +98,7 @@ const Aya = () => {
         nekoEl.style.imageRendering = "pixelated";
         nekoEl.style.left = `${nekoPosX - 16}px`;
         nekoEl.style.top = `${nekoPosY - 16}px`;
-        nekoEl.style.zIndex = 2147483647;
+        nekoEl.style.zIndex = 0;
 
         let nekoFile = require("../../assets/gif/neko.gif")
         const curScript = document.currentScript
