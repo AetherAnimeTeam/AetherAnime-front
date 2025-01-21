@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import cls from "./Header.module.css";
 import { Link, useNavigate } from "react-router-dom";
 import { ReactComponent as NotificationIcon } from "../../assets/icons/bell.svg";
@@ -8,6 +8,7 @@ import { ReactComponent as User } from "../../assets/icons/user.svg";
 import { ReactComponent as Logo } from "../../assets/icons/origami.svg";
 import { ReactComponent as MenuIcon } from "../../assets/icons/menu.svg";
 import { ReactComponent as SearchIcon } from "../../assets/icons/search.svg";
+import { ReactComponent as HomeIcon } from "../../assets/icons/house.svg";
 import LoginForm from "../Login/Login";
 import RegisterForm from "../Login/Register";
 import CodeInput from "../Login/CodeInput";
@@ -27,6 +28,25 @@ const Header = () => {
     const [cookies, setCookie, removeCookie] = useCookies(["access_token", "refresh_token"]);
     const navigate = useNavigate();
     const [userData, setUserData] = useState(null);
+    const [isSearchActive, setIsSearchActive] = useState(false); 
+    const searchContainerRef = useRef(null); 
+
+    useEffect(() => {
+        const handleClickOutside = (event) => {
+            if (searchContainerRef.current && !searchContainerRef.current.contains(event.target)) {
+                setIsSearchActive(false); 
+            }
+        };
+
+        document.addEventListener("mousedown", handleClickOutside);
+        return () => {
+            document.removeEventListener("mousedown", handleClickOutside);
+        };
+    }, []);
+
+    const handleAnimeClick = () => {
+        setIsSearchActive(false); 
+    };
 
     useEffect(() => {
         const getData = async () => {
@@ -105,19 +125,20 @@ const Header = () => {
                 </Link>
 
                 {/* Блок поиска */}
-                <div className={cls.searchContainer}>
+                <div className={cls.searchContainer} ref={searchContainerRef}>
                     <input
                         type="text"
                         placeholder="Поиск аниме..."
                         value={animeName}
                         onChange={(e) => setAnimeName(e.target.value)}
+                        onFocus={() => setIsSearchActive(true)}
                     />
                     <SearchIcon className={cls.searchIcon} />
-                    <div onClick={(e) => {
-                        if (e.target !== e.currentTarget) setAnimeName("");
-                    }}>
-                        {animeName ? <SearchList animeName={animeName} /> : null}
-                    </div>
+                    {isSearchActive && animeName.length > 2 && (
+                        <div className={cls.searchResultsWrapper}>
+                            <SearchList animeName={animeName} onAnimeClick={handleAnimeClick} setAnimeName={setAnimeName} />
+                        </div>
+                    )}
                 </div>
             </div>
 
@@ -150,6 +171,10 @@ const Header = () => {
 
             {/* Меню для мобильных устройств */}
             <div className={`${cls.mobileMenu} ${isMenuOpen ? cls.mobileMenuOpen : ''}`}>
+                <Link to="/" className={cls.mobileMenuItem}>
+                    <HomeIcon className={cls.mobileMenuIcon} />
+                    <span>Главная</span>
+                </Link>
                 <Link to="/about" className={cls.mobileMenuItem}>
                     <NotificationIcon className={cls.mobileMenuIcon} />
                     <span>Увед.</span>

@@ -1,53 +1,80 @@
 .AnimeItemContainer {
     display: flex;
-    flex-direction: row;
-    gap: 12px;
-    padding: 8px 16px 8px 16px;
-    align-content: space-between;
+    align-items: center;
+    gap: 1rem;
+    cursor: pointer;
+    padding: 0.5rem;
+    border-radius: 0.5rem;
+    transition: background 0.2s ease;
+}
+
+.AnimeItemContainer:hover {
+    background: rgba(255, 255, 255, 0.05);
 }
 
 .poster {
-    width: 54px;
+    width: 60px;
     height: 80px;
-    border-radius: 3px;
+    border-radius: 0.5rem;
+    object-fit: cover;
+    flex-shrink: 0; 
 }
 
 .textInfo {
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
+    gap: 0.5rem;
+    flex: 1; 
+    min-width: 0; 
+}
+
+.name {
+    margin: 0;
+    font-size: 1rem;
+    font-weight: 500;
+    color: white;
+    white-space: nowrap; 
+    overflow: hidden; 
+    text-overflow: ellipsis; 
 }
 
 .meta {
     display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.scoreBanner {
+    display: flex;
     flex-direction: row;
-    gap: 12px;
-    width: fit-content;
-    align-items: end;
+    align-items: center;
+    padding: 0.35rem 0.7rem;
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(2rem);
+    border-radius: 0.55rem;
+    border: 0.08rem solid rgba(194, 194, 194, 0.1);
+    gap: 0.4rem;
+    flex-shrink: 0; 
 }
 
-.name {
-    font-family: Inter, monospace;
-    font-weight: 400;
-    font-size: 18px;
-    line-height: 27px;
+.scoreBanner span {
     color: white;
-    margin: 0;
-}
-
-.score {
-    font-family: Inter, monospace;
-    font-weight: 500;
-    font-size: 20px;
-    line-height: 24px;
-    margin: 0;
+    font-family: "Inter", monospace;
+    font-size: 0.9rem;
+    font-weight: 600;
 }
 
 .year {
-    font-family: Inter, monospace;
-    font-weight: 400;
-    font-size: 16px;
-    line-height: 22px;
-    color: rgba(134, 134, 134, 1);
-    margin: 0;
+    color: white;
+    font-family: "Inter", monospace;
+    font-size: 0.9rem;
+    font-weight: 500;
+    flex-shrink: 0; 
+}
+
+.genre {
+    color: white;
+    font-family: "Inter", monospace;
+    font-size: 0.9rem;
+    font-weight: 500;
 }

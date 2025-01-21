@@ -38,7 +38,7 @@
     width: 320px;
     display: flex;
     align-items: center;
-    position: relative;
+    position: relative; 
 }
 
 .searchContainer input {
@@ -225,11 +225,10 @@
     align-items: center;
     justify-content: center;
     gap: 0.2rem;
-    padding: 0.3rem;
+    padding: 0.3rem 0;
     transition: bottom 0.3s ease;
     z-index: 1000;
 }
-
 
 .mobileMenuOpen {
     bottom: 0;
@@ -243,10 +242,10 @@
     color: white;
     text-decoration: none;
     font-size: 0.7rem;
-    padding: 0.4rem 0.1rem;
+    padding: 0.4rem 0.8rem;
     border-radius: 0.5rem;
     transition: background 0.2s ease;
-    min-width: 80px;
+    min-width: 35px;
     text-align: center;
 }
 

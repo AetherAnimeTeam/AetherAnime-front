@@ -1,12 +1,94 @@
-.Container {
+.searchResultsContainer {
     position: absolute;
+    top: 120%;
+    left: 0; 
     display: flex;
     flex-direction: column;
-    width: 18.23rem;
-    max-height: 500px;
+    max-height: 400px;
     overflow-y: scroll;
-    background: rgba(25, 32, 39, 1);
-    border-radius: 16px;
-    padding: 8px 0 8px 0;
+    background: rgba(25, 32, 39, 0.5);
+    backdrop-filter: blur(2rem);
+    border-radius: 0.9rem;
     z-index: 1000;
+    opacity: 0;
+    transform: scale(0.9);
+    transform-origin: top;
+    animation: bounceIn 0.3s ease forwards;
+    width: 100%; 
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5); 
+}
+
+@keyframes bounceIn {
+    0% {
+        opacity: 0;
+        transform: scale(0.9);
+    }
+    50% {
+        opacity: 1;
+        transform: scale(1.05);
+    }
+    100% {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+.searchResultsContainer.closing {
+    animation: bounceOut 0.3s ease forwards;
+}
+
+@keyframes bounceOut {
+    0% {
+        opacity: 1;
+        transform: scale(1);
+    }
+    50% {
+        opacity: 0.5;
+        transform: scale(0.95);
+    }
+    100% {
+        opacity: 0;
+        transform: scale(0.9);
+    }
+}
+
+.searchLoader {
+    padding: 2rem;
+    text-align: center;
+    color: white;
+    font-family: Inter, monospace;
+}
+
+.searchNoResults {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 16px;
+    color: white;
+    font-family: Inter, monospace;
+    font-size: 14px;
+}
+
+.searchResetButton {
+    margin-top: 12px;
+    padding: 8px 16px;
+    background: rgba(255, 255, 255, 0.1); 
+    color: white;
+    border: none;
+    border-radius: 0.9rem; 
+    cursor: pointer;
+    font-family: Inter, monospace;
+    font-size: 14px;
+    transition: background 0.2s ease;
+}
+
+.searchResetButton:hover {
+    background: rgba(255, 255, 255, 0.2); 
+}
+
+@media (min-width: 1024px) {
+    .searchResultsContainer {
+        width: 500px; 
+    }
 }
