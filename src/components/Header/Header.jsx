@@ -9,6 +9,7 @@ import { ReactComponent as Logo } from "../../assets/icons/origami.svg";
 import { ReactComponent as MenuIcon } from "../../assets/icons/menu.svg";
 import { ReactComponent as SearchIcon } from "../../assets/icons/search.svg";
 import { ReactComponent as HomeIcon } from "../../assets/icons/house.svg";
+import { ReactComponent as CloseIcon } from "../../assets/icons/x.svg";
 import LoginForm from "../Login/Login";
 import RegisterForm from "../Login/Register";
 import CodeInput from "../Login/CodeInput";
@@ -199,6 +200,10 @@ const Header = () => {
                     if (e.target === e.currentTarget) setIsModalOpen(false);
                 }}>
                     <div className={cls.modalContent}>
+                        <CloseIcon 
+                            className={cls.closeIcon} 
+                            onClick={() => setIsModalOpen(false)} 
+                        />
                         <h2 style={{ marginBottom: 0 }}>
                             {currentStep === 'login' && 'Вход'}
                             {currentStep === 'register' && 'Регистрация'}

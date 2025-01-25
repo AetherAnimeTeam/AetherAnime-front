@@ -1,10 +1,9 @@
 .Footer {
     height: 5.21rem;
     display: flex;
-    background-color: rgba(14, 22, 31, 1);
+    background-color: #121212;
     justify-content: center;
     flex-direction: column;
-    /*align-content: flex-end;*/
     margin-top: auto;
     z-index: 100;
     gap: 0.42rem;

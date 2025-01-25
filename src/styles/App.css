@@ -17,7 +17,7 @@ body {
     display:flex;
     min-height: 100vh;
     flex-direction: column;
-    background: rgba(14, 22, 31, 1);
+    background: #121212;
     overflow: hidden;
 }
 

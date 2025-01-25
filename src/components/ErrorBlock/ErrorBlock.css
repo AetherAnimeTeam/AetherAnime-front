@@ -1,0 +1,163 @@
+.error-overlay {
+  position: fixed;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  background: rgba(0, 0, 0, 0.92);
+  z-index: 1000;
+  padding: 16px;
+}
+
+.error-card {
+  width: 100%;
+  max-width: 320px;
+  background: rgba(28, 28, 28, 0.96);
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.25);
+}
+
+.content-wrapper {
+  padding: 1.4rem;
+}
+
+.error-message {
+  margin: 0 0 20px;
+  color: #ff9999;
+  font: 400 16px/1.5 'Inter', sans-serif;
+  text-align: center;
+  position: relative;
+}
+
+.media-container {
+  height: 140px;
+  margin: 0 0 20px;
+  border-radius: 12px;
+  overflow: hidden;
+  position: relative;
+}
+
+.error-visual {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: sepia(0.2) brightness(0.9);
+}
+
+.sparkles {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+.sparkle {
+  position: absolute;
+  background: rgba(255, 255, 255, 0.8);
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  animation: sparkle 1.2s infinite;
+}
+
+@keyframes sparkle {
+  0% { transform: scale(0); opacity: 0; }
+  50% { transform: scale(1); opacity: 1; }
+  100% { transform: scale(0); opacity: 0; }
+}
+
+.sparkle:nth-child(1) { top: 10%; left: 20%; animation-delay: 0.1s; }
+.sparkle:nth-child(2) { top: 80%; left: 70%; animation-delay: 0.4s; }
+.sparkle:nth-child(3) { top: 30%; left: 90%; animation-delay: 0.7s; }
+.sparkle:nth-child(4) { top: 65%; left: 10%; animation-delay: 1s; }
+.sparkle:nth-child(5) { top: 45%; left: 50%; animation-delay: 1.3s; }
+.sparkle:nth-child(6) { top: 15%; left: 75%; animation-delay: 1.6s; }
+
+.action-container {
+  position: relative;
+  min-height: 44px;
+}
+
+.retry-button {
+  width: 100%;
+  height: 44px;
+  padding: 0 24px;
+  background: rgba(255, 255, 255, 0.1);
+  color: #FFF;
+  border: none;
+  border-radius: 12px;
+  font: 500 15px 'Inter', sans-serif;
+  cursor: pointer;
+  backdrop-filter: blur(8px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: 
+    background 0.2s ease,
+    transform 0.2s cubic-bezier(0.18, 0.89, 0.32, 1.28);
+}
+
+.retry-button:hover {
+  background: rgba(255, 255, 255, 0.15);
+}
+
+.retry-button:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+}
+
+.progress-indicator {
+  width: 100%;
+  height: 4px;
+  background: rgba(255, 255, 255, 0.08);
+  border-radius: 2px;
+  overflow: hidden;
+  position: relative;
+}
+
+.loader-track {
+  width: 45%;
+  height: 100%;
+  background: linear-gradient(90deg, 
+    rgba(255,255,255,0) 0%, 
+    rgba(255,255,255,1) 50%, 
+    rgba(255,255,255,0) 100%
+  );
+  animation: loading 1.8s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+  box-shadow: 0 0 8px rgba(255,255,255,0.2);
+}
+
+@keyframes loading {
+  0% { transform: translateX(-160%); }
+  100% { transform: translateX(260%); }
+}
+
+@media (max-width: 380px) {
+  .content-wrapper {
+    padding: 20px;
+  }
+  
+  .media-container {
+    height: 120px;
+    margin-bottom: 16px;
+  }
+  
+  .retry-button {
+    height: 40px;
+    font-size: 14px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .error-overlay,
+  .error-card,
+  .retry-button,
+  .progress-indicator,
+  .sparkle {
+    transition: none !important;
+    animation: none !important;
+  }
+  
+  .loader-track {
+    animation: none !important;
+  }
+}
