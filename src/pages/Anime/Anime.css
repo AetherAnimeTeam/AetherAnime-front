@@ -18,8 +18,7 @@
 
 .anime-hero-section {
   position: relative;
-  padding: 2rem 0;
-  margin-bottom: 1rem;
+  padding: 2rem 0 0 0;
 }
 
 .anime-background-blur {
@@ -42,7 +41,7 @@
   margin: 0 auto;
   padding: 0 2rem;
   display: flex;
-  gap: 2rem;
+  gap: 1.8rem;
 }
 
 .anime-poster-container {
@@ -105,23 +104,22 @@
   flex-wrap: wrap;
 }
 
-.anime-rating-badge,
-.anime-status-badge {
+.anime-rating-badge {
   display: inline-flex;
   align-items: center;
   gap: 0.4rem;
-  padding: 0.5rem 1rem;
+  padding: 0.4rem 0.8rem;
   border-radius: var(--border-radius);
   background-color: var(--secondary-bg);
-  backdrop-filter: blur(2rem);
   font-size: 0.8rem;
   color: rgba(255, 255, 255, 0.7);
+  user-select: none;
 }
 
 .rating-count {
-  font-size: 0.8rem;
+  font-size: 0.7rem;
   color: rgba(255, 255, 255, 0.7);
-  margin-left: 0.3rem;
+  margin-left: 0.2rem;
 }
 
 .anime-metadata-container {
@@ -153,6 +151,38 @@
   font-size: 0.9rem;
   color: #fff;
   line-height: 1.4;
+  display: flex;
+  flex-wrap: nowrap;
+  overflow: hidden;
+  gap: 0.3em;
+  white-space: nowrap;
+  min-width: 50px; /* Защита от пустого контейнера */
+}
+
+.genre-item {
+  display: inline-block;
+  flex-shrink: 0;
+}
+
+.genre-badge {
+  flex-shrink: 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background-color: rgba(112, 165, 255, 0.2);
+  color: #70a5ff;
+  font-size: 0.75rem;
+  padding: 2px 6px;
+  border-radius: 4px;
+  margin-left: 4px;
+  font-weight: 500;
+  line-height: 1;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.genre-badge:hover {
+  background-color: rgba(112, 165, 255, 0.3);
 }
 
 .metadata-info-button {
@@ -195,13 +225,13 @@
   gap: 0.8rem;
   background-color: rgba(255, 255, 255, 0.1);
   border: none;
-  padding: 0.8rem 1.5rem;
+  padding: 0.8rem 1.2rem;
   border-radius: var(--border-radius);
   font-family: Inter, monospace;
   font-size: 14px;
   color: #fff;
   cursor: pointer;
-  backdrop-filter: blur(1rem);
+  user-select: none;
   transition: all var(--transition-duration) ease;
 }
 
@@ -216,14 +246,14 @@
 .status-select-header {
   display: flex;
   align-items: center;
-  gap: 8px;
-  padding: 0.8rem 1.5rem;
+  gap: 12px;
+  padding: 0.8rem 1rem;
   border-radius: var(--border-radius);
   font-size: 14px;
   cursor: pointer;
   transition: all var(--transition-duration) ease;
-  border: 1px solid;
   position: relative;
+  user-select: none;
 }
 
 .status-select-header:hover {
@@ -235,15 +265,10 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  transform-origin: center;
 }
 
 .select-arrow-icon {
-  transition: 
-    transform 0.3s cubic-bezier(0.68, -0.55, 0.27, 1.55),
-    filter 0.2s ease;
-  transform-origin: center center;
-  will-change: transform;
+  transform-origin: center;
 }
 
 .status-select-dropdown {
@@ -251,13 +276,14 @@
   top: 100%;
   left: 0;
   right: 0;
+  width: 200px;
   margin-top: 0.5rem;
-  backdrop-filter: blur(2rem);
   border-radius: var(--border-radius);
   overflow: hidden;
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
   z-index: 10;
   background: rgba(30, 30, 30, 0.9);
+  backdrop-filter: blur(10px);
 }
 
 .status-option {
@@ -268,7 +294,8 @@
   transition: background var(--transition-duration) ease;
   display: flex;
   align-items: center;
-  gap: 8px;
+  gap: 12px;
+  user-select: none;
 }
 
 .status-option svg {
@@ -303,18 +330,34 @@
   padding: 0.8rem;
   border-radius: var(--border-radius);
   cursor: pointer;
-  backdrop-filter: blur(1rem);
-  transition: all var(--transition-duration) ease;
+  transition: background var(--transition-duration) ease;
+  will-change: transform;
+  position: relative; 
 }
 
 .favorite-button:hover {
   background-color: rgba(255, 255, 255, 0.2);
 }
 
-.favorite-button-icon {
-  width: 20px;
-  height: 20px;
-  filter: brightness(0.9);
+.favorite-button img {
+  transition: filter 0.3s cubic-bezier(0.68, -0.55, 0.27, 2);
+  will-change: transform, filter;
+  transform-box: fill-box;
+  vertical-align: bottom; 
+}
+
+.favorite-button svg {
+  transition: stroke 0.3s ease;
+  transform-box: fill-box;
+}
+
+.favorite-button path {
+  vector-effect: non-scaling-stroke;
+  transition: fill 0.2s linear;
+}
+
+.favorite-button:hover svg {
+  stroke: #ffedbf;
 }
 
 .anime-description-section {
@@ -324,7 +367,6 @@
 
 .description-content {
   overflow: hidden;
-  max-height: 100px;
 }
 
 .description-text {
@@ -341,7 +383,7 @@
   color: var(--accent-color);
   cursor: pointer;
   font-weight: 500;
-  padding: 0.5rem 0;
+  padding: 0.35rem 0;
   display: block;
   transition: opacity 0.2s;
   font-size: 0.9rem;
@@ -352,111 +394,75 @@
   text-decoration: underline;
 }
 
-.metadata-modal-overlay {
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: rgba(0, 0, 0, 0.7);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  z-index: 1000;
-  backdrop-filter: blur(5px);
-}
-
-.metadata-modal-content {
-  position: relative;
-  align-items: center;
-  gap: 0.4rem;
-  padding: 2rem;
-  border-radius: var(--border-radius);
-  background-color: rgba(255, 255, 255, 0.1);
-  backdrop-filter: blur(2rem);
-  font-size: 0.8rem;
-  color: rgba(255, 255, 255, 0.7);
-  overflow: hidden;
-  max-width: 90%;
-  width: 600px;
-}
-
-.metadata-modal-close {
-  position: absolute;
-  top: 1rem;
-  right: 1rem;
-  background: none;
-  border: none;
-  color: #fff;
-  font-size: 1.5rem;
-  cursor: pointer;
-  padding: 0.5rem;
-  line-height: 1;
-  transition: opacity var(--transition-duration);
-}
-
-.metadata-modal-close:hover {
-  opacity: 0.8;
-}
-
-.metadata-modal-title {
-  margin: 0 0 1.5rem;
-  color: #fff;
-  font-size: 1.3rem;
-  font-weight: 600;
-  text-align: center;
-}
-
-.comments-section {
-  max-width: 1200px;
-  margin: 2rem auto;
-  padding: 0 2rem;
-}
-
-.section-title {
-  font-size: 1.5rem;
-  margin-bottom: 1.5rem;
-  color: #fff;
-}
-
-.auth-warning {
-  color: #ff4757;
-  padding: 1rem;
-  background: rgba(255, 71, 87, 0.1);
-  border-radius: var(--border-radius);
-  text-align: center;
-}
-
-.comments-list {
-  margin-top: 1.5rem;
-}
-
 .watch-button-icon {
   width: 16px;
   height: 16px;
 }
 
+.tabs-container {
+  margin-top: 2rem;
+}
+
+.comments-section {
+  margin-top: 2rem;
+}
+
+.section-title {
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
+}
+
+.auth-warning {
+  color: var(--text-secondary);
+  font-size: 0.9rem;
+  margin-bottom: 1rem;
+}
+
+.comments-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
 @media (max-width: 768px) {
+  .anime-hero-section {
+    padding: 1.5rem 0;
+  }
+
   .anime-content-wrapper {
     flex-direction: column;
     align-items: center;
     padding: 0 1rem;
-    gap: 1.5rem;
+    gap: 1rem;
   }
 
   .anime-poster-container {
-    width: 220px;
+    height: 350px;
+    max-height: fit-content;
+    overflow: hidden;
+    width: 250px;
+    max-width: 100%;
+    border-radius: var(--border-radius);
+  }
+
+  .anime-poster-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center 35%; 
   }
 
   .anime-title-block {
     flex-direction: column;
     align-items: center;
     text-align: center;
+    margin-bottom: 0;
+    gap: 0;
   }
 
   .anime-main-title {
-    font-size: 1.6rem;
-    line-height: 1.4;
+    font-size: 1.5rem;
+    line-height: 1.2;
   }
 
   .anime-rating-status-container {
@@ -473,31 +479,30 @@
     right: 0.75rem;
   }
 
-  .metadata-modal-title {
-    font-size: 1rem;
-  }
-
-  .metadata-modal-content {
-    margin: 0 1rem;
-    padding: 1.5rem;
-  }
-
   .anime-actions-container {
     flex-direction: column;
     align-items: stretch;
   }
-
-  .status-bookmark-container {
-    display: flex;
-    gap: 0.6rem;
-    align-items: center;
-  }
-
-  .favorite-button {
-    flex-shrink: 0;
-  }
   
   .select-arrow-icon {
     transform-origin: center;
+  }
+
+  .metadata-grid {
+    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  }
+
+  .metadata-value {
+    font-size: 0.8rem;
+  }
+
+  .description-toggle-button {
+    padding: 0.28rem 0;
+  }
+}
+
+@media (max-width: 480px) {
+  .anime-main-title {
+    font-size: 1.3rem;
   }
 }

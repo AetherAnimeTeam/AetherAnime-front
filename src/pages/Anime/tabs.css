@@ -1,0 +1,241 @@
+.tabs-container {
+  max-width: 1400px;
+  margin: 2rem auto 0;
+  padding: 0 1rem;
+}
+
+.tabs-header {
+  display: flex;
+  gap: 1rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  margin-bottom: 2rem;
+  overflow-x: auto;
+  scrollbar-width: none;
+  -webkit-overflow-scrolling: touch;
+}
+
+.tabs-header::-webkit-scrollbar {
+  display: none;
+}
+
+.tab-button {
+  background: none;
+  border: none;
+  color: var(--text-secondary);
+  font-size: 0.9rem;
+  font-weight: 500;
+  padding: 0.6rem 0.5rem;
+  cursor: pointer;
+  position: relative;
+  transition: color 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  margin-bottom: -1px;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+.tab-button:hover {
+  color: #2F80ED;
+}
+
+.active-tab {
+  color: #2F80ED;
+  font-size: 0.92rem; /* Убрано свойство font-weight: 600; */
+}
+
+.active-tab::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: #2F80ED;
+  border-radius: 2px 2px 0 0;
+  animation: tabSlide 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+@keyframes tabSlide {
+  from { transform: scaleX(0.8); opacity: 0; }
+  to { transform: scaleX(1); opacity: 1; }
+}
+
+.episodes-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 1rem;
+  padding: 0.5rem 0;
+}
+
+.episode-card {
+  background: var(--secondary-bg);
+  border-radius: var(--border-radius);
+  overflow: hidden;
+  position: relative;
+  aspect-ratio: 1.78;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  transform-origin: center;
+  contain: layout;
+}
+
+.episode-content {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.episode-number-badge {
+  position: absolute;
+  top: 0.8rem;
+  left: 0.8rem;
+  background: rgba(255, 255, 255, 0.15);
+  color: rgba(255, 255, 255, 0.95);
+  padding: 0.35rem 0.9rem;
+  border-radius: 24px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  backdrop-filter: blur(8px);
+  z-index: 1;
+  border: none;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.12);
+  transition: all 0.3s ease;
+  letter-spacing: 0.015em;
+}
+
+.play-button {
+  width: 100%;
+  height: 100%;
+  border: none;
+  background: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+.play-button::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    180deg,
+    rgba(0, 0, 0, 0) 60%,
+    rgba(0, 0, 0, 0.3) 100%
+  );
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.episode-card:hover .play-button::after {
+  opacity: 1;
+}
+
+.play-icon {
+  width: 22%;
+  height: 22%;
+  max-width: 36px;
+  max-height: 36px;
+  opacity: 0;
+  transform: scale(0.9);
+  transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+  filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.2));
+  z-index: 1;
+}
+
+.episode-card:hover .play-icon {
+  opacity: 0.95;
+  transform: scale(1);
+}
+
+@media (max-width: 768px) {
+  .tabs-container {
+    padding: 0 1rem;
+    margin-top: 1rem;
+  }
+  
+  .tab-button {
+    font-size: 0.8rem;
+    padding: 0.5rem 0.4rem;
+  }
+  
+  .active-tab {
+    font-size: 0.82rem;
+  }
+
+  .episodes-grid {
+    grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+    gap: 1rem;
+  }
+
+  .episode-number-badge {
+    font-size: 0.8rem;
+    padding: 0.3rem 0.8rem;
+    top: 0.5rem;
+    left: 0.5rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .tab-button {
+    font-size: 0.75rem;
+    padding: 0.45rem 0.3rem;
+  }
+  
+  .episodes-grid {
+    grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+  }
+
+  .episode-number-badge {
+    font-size: 0.75rem;
+    padding: 0.25rem 0.7rem;
+  }
+
+  .play-icon {
+    width: 26%;
+    height: 26%;
+  }
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .episode-card:hover {
+    transform: scale(1.03);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+    z-index: 2;
+  }
+  
+  .episode-card:hover .episode-number-badge {
+    background: rgba(255, 255, 255, 0.2);
+  }
+}
+
+.comments-section {
+  padding: 1rem 0;
+}
+
+.section-title {
+  font-size: 1.25rem;
+  margin-bottom: 1.5rem;
+  color: var(--text-primary);
+}
+
+.auth-warning {
+  padding: 1rem;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: var(--border-radius);
+  text-align: center;
+  margin-bottom: 1.5rem;
+}
+
+.comments-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}

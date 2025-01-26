@@ -110,6 +110,7 @@
     cursor: pointer;
     backdrop-filter: blur(1rem);
     transition: all 0.2s ease;
+    user-select: none;
 }
 
 .loginButton p {

@@ -1,28 +1,33 @@
-import React, { useMemo, useState } from "react";
+import React, { useMemo, useState, useRef, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import useSWR from "swr";
 import { getDetailed, getPopular } from "../../API/AnimeService";
 import { fetcher } from "../../API/Base";
 import { useCookies } from "react-cookie";
 import { getComments, sendComment } from "../../API/CommentService";
-import { Star, ChevronDown, Info, Eye, Check, Clock, Pause, X } from "lucide-react";
+import { Star, ChevronDown, Info, CheckCheck, Check, Clock, Pause, X } from "lucide-react";
 import AnimeList from "../../components/AnimeList/AnimeList";
 import CommentField from "../../components/CommentField/CommentField";
 import Comment from "../../components/UI/Comment/Comment";
 import Loader from "../../components/Loader/Loader";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion } from "framer-motion";
+import Modal from '../../components/Modal/Modal';
 import "./Anime.css";
+import "./tabs.css";
 import PlayIcon from "../../assets/icons/play.svg";
-import BookmarkIcon from "../../assets/icons/bookmark.svg";
 import PlusIcon from "../../assets/icons/plus.svg";
 
 const Anime = () => {
   const params = useParams();
   const [cookie] = useCookies(["access_token"]);
-  const [isDescriptionExpanded, setDescriptionExpanded] = useState(false);
   const [showMetadataModal, setShowMetadataModal] = useState(false);
+  const [showDescriptionModal, setShowDescriptionModal] = useState(false);
   const [selectedStatus, setSelectedStatus] = useState("");
   const [isStatusDropdownOpen, setIsStatusDropdownOpen] = useState(false);
+  const [isBookmarked, setBookmarked] = useState(false);
+  const metadataValueRef = useRef(null);
+  const [maxVisibleGenres, setMaxVisibleGenres] = useState(0);
+  const [activeTab, setActiveTab] = useState('series');
 
   const descriptionRegex = /(\[character=\d+]|\[\/character])/g;
   const popularKey = useMemo(() => getPopular(25, 1), []);
@@ -37,13 +42,90 @@ const Anime = () => {
   const { data: animeMeta, error: metaError } = useSWR(animeKey, fetcher);
   const { data: comments, error: commentsError, mutate: commentsMutate } = useSWR(commentsKey, fetcher);
 
+  useEffect(() => {
+    if (!metadataValueRef.current || !animeMeta?.genres) return;
+
+    const calculateVisibleGenres = () => {
+      const container = metadataValueRef.current;
+      if (!container || container.offsetWidth === 0) return;
+
+      const items = Array.from(container.children);
+      const tempSpan = document.createElement('span');
+      tempSpan.style.visibility = 'hidden';
+      tempSpan.style.position = 'absolute';
+      tempSpan.style.whiteSpace = 'nowrap';
+      
+      container.appendChild(tempSpan);
+      
+      let totalWidth = 0;
+      let visibleCount = 0;
+      const containerWidth = container.offsetWidth;
+      const genreNames = animeMeta.genres.map(g => g.name);
+
+      for (let i = 0; i < genreNames.length; i++) {
+        tempSpan.textContent = genreNames[i] + (i < genreNames.length - 1 ? ', ' : '');
+        const itemWidth = tempSpan.offsetWidth;
+        
+        if (totalWidth + itemWidth <= containerWidth) {
+          totalWidth += itemWidth;
+          visibleCount++;
+        } else {
+          break;
+        }
+      }
+
+      container.removeChild(tempSpan);
+      setMaxVisibleGenres(Math.max(visibleCount, 1)); // Минимум 1 жанр
+    };
+
+    const resizeObserver = new ResizeObserver(calculateVisibleGenres);
+    resizeObserver.observe(metadataValueRef.current);
+
+    calculateVisibleGenres();
+    return () => resizeObserver.disconnect();
+  }, [animeMeta?.genres]);
+
   const handleCommentSubmit = async (text) => {
     await sendComment(params["id"], text, cookie.access_token);
     await commentsMutate();
   };
 
+  const renderMetadataValue = (items, showBadge = false) => {
+    if (!items || items.length === 0) return <div className="metadata-value">Не указано</div>;
+    
+    const visibleCount = maxVisibleGenres > 0 ? maxVisibleGenres : items.length;
+    const visibleItems = items.slice(0, visibleCount);
+    const remaining = items.length - visibleCount;
+
+    return (
+      <div className="metadata-value" ref={metadataValueRef}>
+        {visibleItems.map((item, index) => (
+          <span key={index} className="genre-item">
+            {item}
+            {index < visibleItems.length - 1 && ', '}
+          </span>
+        ))}
+        {showBadge && remaining > 0 && (
+          <span 
+            className="genre-badge"
+            onClick={(e) => {
+              e.stopPropagation();
+              setShowMetadataModal(true);
+            }}
+          >
+            +{remaining}
+          </span>
+        )}
+      </div>
+    );
+  };
+
   const mainMetadata = [
-    { label: "Жанры", value: animeMeta?.genres?.map((item) => item.name) },
+    { 
+      label: "Жанры", 
+      value: animeMeta?.genres?.map((item) => item.name),
+      showBadge: true
+    },
     { label: "Студия", value: animeMeta?.studios },
     { label: "Рейтинг", value: animeMeta?.age_rating && ageRatingDict[animeMeta.age_rating] },
     {
@@ -63,17 +145,12 @@ const Anime = () => {
     { label: "Формат", value: animeMeta?.format },
   ];
 
-  const renderMetadataValue = (items, maxVisible = 2) => {
-    if (!items || items.length === 0) return "Не указано";
-    return items.slice(0, maxVisible).join(", ");
-  };
-
   const statusOptions = [
-    { value: "Смотрю", icon: <Eye size={18} />, color: "#2ed573" },
-    { value: "Просмотрено", icon: <Check size={18} />, color: "#70a5ff" },
-    { value: "В планах", icon: <Clock size={18} />, color: "#a855f7" },
-    { value: "Отложено", icon: <Pause size={18} />, color: "#eab308" },
-    { value: "Брошено", icon: <X size={18} />, color: "#ff4757" },
+    { value: "Смотрю", icon: <Check size={18} />, color: "#34d399" },
+    { value: "Просмотрено", icon: <CheckCheck size={18} />, color: "#60a5fa" },
+    { value: "В планах", icon: <Clock size={18} />, color: "#a78bfa" },
+    { value: "Отложено", icon: <Pause size={18} />, color: "#fbbf24" },
+    { value: "Брошено", icon: <X size={18} />, color: "#f87171" },
   ];
 
   const currentStatus = statusOptions.find(option => option.value === selectedStatus);
@@ -81,51 +158,39 @@ const Anime = () => {
   if (metaError || popularAnimeError || commentsError) return <div>Error</div>;
   if (!animeMeta || !popularAnime || !comments) return <Loader />;
 
-  const rawDescription = animeMeta.description?.replace(descriptionRegex, "") || "Описание отсутствует!";
+  const rawDescription = animeMeta.description?.replace(descriptionRegex, "") || "К сожалению, к данному тайтлу отсутствует описание. ⚡️";
 
   return (
     <div className="anime-page-container">
-      <AnimatePresence>
-        {showMetadataModal && (
-          <motion.div
-            className="metadata-modal-overlay"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            onClick={() => setShowMetadataModal(false)}
-          >
-            <motion.div
-              className="metadata-modal-content"
-              initial={{ scale: 0.9, opacity: 0 }}
-              animate={{ scale: 1, opacity: 1 }}
-              exit={{ scale: 0.9, opacity: 0 }}
-              onClick={(e) => e.stopPropagation()}
-            >
-              <button
-                className="metadata-modal-close"
-                onClick={() => setShowMetadataModal(false)}
-                aria-label="Закрыть модальное окно"
-              >
-                &times;
-              </button>
-              <h3 className="metadata-modal-title">Все метаданные</h3>
-              <div className="metadata-grid">
-                {[...mainMetadata, ...additionalMetadata].map(
-                  (item, index) =>
-                    item.value && (
-                      <div className="metadata-item" key={index}>
-                        <span className="metadata-label">{item.label}</span>
-                        <span className="metadata-value">
-                          {Array.isArray(item.value) ? item.value.join(", ") : item.value}
-                        </span>
-                      </div>
-                    ),
-                )}
-              </div>
-            </motion.div>
-          </motion.div>
-        )}
-      </AnimatePresence>
+      <Modal
+        isOpen={showMetadataModal}
+        onClose={() => setShowMetadataModal(false)}
+        title="Все метаданные"
+      >
+        <div className="metadata-grid">
+          {[...mainMetadata, ...additionalMetadata].map(
+            (item, index) =>
+              item.value && (
+                <div className="metadata-item" key={index}>
+                  <span className="metadata-label">{item.label}</span>
+                  <span className="metadata-value">
+                    {Array.isArray(item.value) ? item.value.join(", ") : item.value}
+                  </span>
+                </div>
+              ),
+          )}
+        </div>
+      </Modal>
+
+      <Modal
+        isOpen={showDescriptionModal}
+        onClose={() => setShowDescriptionModal(false)}
+        title="Полное описание"
+      >
+        <div className="description-modal-text">
+          {rawDescription}
+        </div>
+      </Modal>
 
       <div className="anime-hero-section">
         <div
@@ -186,10 +251,6 @@ const Anime = () => {
                   <span>{animeMeta.score}</span>
                   <span className="rating-count">{animeMeta.score_count} оценок</span>
                 </div>
-
-                {animeMeta.status && (
-                  <div className="anime-status-badge">{statusDict[animeMeta.status]}</div>
-                )}
               </div>
             </div>
 
@@ -200,9 +261,10 @@ const Anime = () => {
                     meta.value && (
                       <div className="metadata-item" key={index}>
                         <span className="metadata-label">{meta.label}</span>
-                        <span className="metadata-value">
-                          {renderMetadataValue(Array.isArray(meta.value) ? meta.value : [meta.value])}
-                        </span>
+                        {renderMetadataValue(
+                          Array.isArray(meta.value) ? meta.value : [meta.value],
+                          meta.showBadge
+                        )}
                       </div>
                     ),
                 )}
@@ -232,39 +294,36 @@ const Anime = () => {
                   onClick={() => setIsStatusDropdownOpen(!isStatusDropdownOpen)}
                 >
                   <div className="status-select-header"
-										style={{ 
-											borderColor: currentStatus?.color || 'rgba(255, 255, 255, 0.1)',
-											backgroundColor: currentStatus ? `${currentStatus.color}20` : 'rgba(255, 255, 255, 0.1)'
-										}}
-									>
-										{currentStatus ? (
-											<>
-												{currentStatus.icon}
-												<span>{selectedStatus}</span>
-											</>
-										) : (
-											<>
-												<img src={PlusIcon} alt="Выбрать статус" className="status-icon" />
-												<span>Выбрать статус</span>
-											</>
-										)}
-										
-										<motion.div
-											className="arrow-container"
-											animate={{ 
-												rotate: isStatusDropdownOpen ? 180 : 0,
-											}}
-											transition={{
-												type: "spring",
-												stiffness: 300,
-												damping: 20,
-												blur: { duration: 0.2 }
-											}}
-											style={{ originY: 0.5 }}
-										>
-											<ChevronDown size={18} className="select-arrow-icon" />
-										</motion.div>
-									</div>
+                    style={{ 
+                      backgroundColor: currentStatus ? `${currentStatus.color}20` : 'rgba(255, 255, 255, 0.1)'
+                    }}
+                  >
+                    {currentStatus ? (
+                      <>
+                        {currentStatus.icon}
+                        <span>{selectedStatus}</span>
+                      </>
+                    ) : (
+                      <>
+                        <img src={PlusIcon} alt="Выбрать статус" className="status-icon" />
+                        <span>Выбрать статус</span>
+                      </>
+                    )}
+                    
+                    <motion.div
+                      className="arrow-container"
+                      animate={{ 
+                        rotate: isStatusDropdownOpen ? 180 : 0,
+                      }}
+                      transition={{
+                        type: "spring",
+                        stiffness: 300,
+                        damping: 20,
+                      }}
+                    >
+                      <ChevronDown size={18} className="select-arrow-icon" />
+                    </motion.div>
+                  </div>
                   {isStatusDropdownOpen && (
                     <div className="status-select-dropdown">
                       {statusOptions.map((status) => (
@@ -285,34 +344,79 @@ const Anime = () => {
                   )}
                 </div>
 
-                <button className="favorite-button">
-                  <img
-                    src={BookmarkIcon}
-                    alt="Добавить в избранное"
-                    className="favorite-button-icon"
-                  />
-                </button>
+                <motion.button 
+                  className="favorite-button"
+                  onClick={() => setBookmarked(!isBookmarked)}
+                  whileHover={{ 
+                    scale: 1.05,
+                  }}
+                  whileTap={{ 
+                    scale: 0.9,
+                  }}
+                  transition={{ 
+                    type: "spring",
+                    stiffness: 400,
+                    damping: 10
+                  }}
+                >
+                  <motion.svg
+                    width="18"
+                    height="18"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="#ffdb8b"
+                    strokeWidth="1.5"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    style={{
+                      transformOrigin: 'bottom center',
+                      backfaceVisibility: 'hidden',
+                      overflow: 'visible'
+                    }}
+                    animate={{
+                      rotateY: isBookmarked ? 360 : 0,
+                      scale: isBookmarked ? [1, 1.4, 1] : 1,
+                      y: isBookmarked ? [0, -8, 0] : 0
+                    }}
+                    transition={{
+                      duration: 0.6,
+                      ease: "anticipate"
+                    }}
+                  >
+                    <motion.path
+                      d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"
+                      initial={false}
+                      animate={{
+                        fill: isBookmarked ? 
+                          'rgba(255, 219, 139, 1)' : 
+                          'rgba(255, 219, 139, 0)'
+                      }}
+                      transition={{
+                        duration: 0.4,
+                        delay: isBookmarked ? 0.2 : 0,
+                        ease: "circInOut"
+                      }}
+                    />
+                  </motion.svg>
+                </motion.button>
               </div>
             </div>
 
             <div className="anime-description-section">
-              <motion.div
-                className="description-content"
-                initial={false}
-                animate={{ 
-                  maxHeight: isDescriptionExpanded ? "1000px" : "100px",
-                  transition: { duration: 0.3 } 
-                }}
-              >
-                <p className="description-text">{rawDescription}</p>
-              </motion.div>
+              <div className="description-content">
+                <p className="description-text">
+                  {rawDescription.length > 250 
+                    ? `${rawDescription.slice(0, 250)}...` 
+                    : rawDescription}
+                </p>
+              </div>
               
-              {rawDescription.length > 150 && (
+              {rawDescription.length > 250 && (
                 <button
                   className="description-toggle-button"
-                  onClick={() => setDescriptionExpanded(!isDescriptionExpanded)}
+                  onClick={() => setShowDescriptionModal(true)}
                 >
-                  {isDescriptionExpanded ? "Свернуть" : "Развернуть"}
+                  Подробнее
                 </button>
               )}
             </div>
@@ -320,21 +424,74 @@ const Anime = () => {
         </div>
       </div>
 
-      <AnimeList animes={popularAnime} name="Похожие тайтлы" />
-
-      <section className="comments-section">
-        <h2 className="section-title">Комментарии</h2>
-        {cookie.access_token ? (
-          <CommentField sendComment={handleCommentSubmit} />
-        ) : (
-          <div className="auth-warning">Для написания комментариев требуется авторизация</div>
-        )}
-        <div className="comments-list">
-          {comments.results?.map((obj) => (
-            <Comment key={obj.id} userId={obj.user} text={obj.content} />
-          ))}
+      <div className="tabs-container">
+        <div className="tabs-header">
+          <button 
+            className={`tab-button ${activeTab === 'series' ? 'active-tab' : ''}`}
+            onClick={() => setActiveTab('series')}
+          >
+            Серии
+          </button>
+          <button 
+            className={`tab-button ${activeTab === 'similar' ? 'active-tab' : ''}`}
+            onClick={() => setActiveTab('similar')}
+          >
+            Похожие
+          </button>
+          <button 
+            className={`tab-button ${activeTab === 'comments' ? 'active-tab' : ''}`}
+            onClick={() => setActiveTab('comments')}
+          >
+            Комментарии
+          </button>
         </div>
-      </section>
+
+        <div className="tabs-content">
+          {activeTab === 'series' && (
+            <div className="episodes-grid">
+              {[...Array(12)].map((_, i) => (
+                <motion.div 
+                  key={i} 
+                  className="episode-card"
+                  whileHover={{ boxShadow: '0 4px 12px rgba(0, 0, 0, 0.15)' }}
+                  transition={{ duration: 0.2 }}
+                >
+                  <div className="episode-content">
+                    <div className="episode-number-badge">#{i + 1}</div>
+                    <button className="play-button">
+                      <img 
+                        src={PlayIcon} 
+                        alt="Play" 
+                        className="play-icon" 
+                      />
+                    </button>
+                  </div>
+                </motion.div>
+              ))}
+            </div>
+          )}
+
+          {activeTab === 'similar' && (
+            <AnimeList animes={popularAnime} name="Похожие тайтлы" />
+          )}
+
+          {activeTab === 'comments' && (
+            <section className="comments-section">
+              <h2 className="section-title">Комментарии</h2>
+              {cookie.access_token ? (
+                <CommentField sendComment={handleCommentSubmit} />
+              ) : (
+                <div className="auth-warning">Для написания комментариев требуется авторизация</div>
+              )}
+              <div className="comments-list">
+                {comments.results?.map((obj) => (
+                  <Comment key={obj.id} userId={obj.user} text={obj.content} />
+                ))}
+              </div>
+            </section>
+          )}
+        </div>
+      </div>
     </div>
   );
 };
