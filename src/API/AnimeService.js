@@ -15,7 +15,6 @@ export const getByName = (name) => {
   const url = `${backendUrl}/api/animes/search/${name}`
   return url
 }
-
 export const setStatus = async (anime_id, status, token) => {
     try {
         return await post(`${backendUrl}/api/animes/status/${anime_id}/`, JSON.stringify({status: status}),

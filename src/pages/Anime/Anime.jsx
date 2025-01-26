@@ -1,3 +1,5 @@
+'use client'
+
 import React, { useMemo, useState, useRef, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import useSWR from "swr";
@@ -41,7 +43,6 @@ const Anime = () => {
   const enumToStatus = { "watching": "Смотрю", "completed": "Просмотрено", "plan_to_watch":  "В планах",
     "on_hold":  "Отложено", "dropped": "Брошено"};
 
-
   const animeKey = useMemo(() => getDetailed(params["id"]), [params]);
   const commentsKey = useMemo(() => getComments(params["id"]), [params]);
 
@@ -56,7 +57,6 @@ const Anime = () => {
     }
     _getStatus();
   }, []);
-
   useEffect(() => {
     const _setStatus = async () => {
       if (selectedStatus === "") return;
@@ -64,7 +64,6 @@ const Anime = () => {
     }
     _setStatus();
   }, [selectedStatus]);
-
   useEffect(() => {
     if (!metadataValueRef.current || !animeMeta?.genres) return;
 
@@ -77,9 +76,9 @@ const Anime = () => {
       tempSpan.style.visibility = 'hidden';
       tempSpan.style.position = 'absolute';
       tempSpan.style.whiteSpace = 'nowrap';
-      
+
       container.appendChild(tempSpan);
-      
+
       let totalWidth = 0;
       let visibleCount = 0;
       const containerWidth = container.offsetWidth;
@@ -88,7 +87,7 @@ const Anime = () => {
       for (let i = 0; i < genreNames.length; i++) {
         tempSpan.textContent = genreNames[i] + (i < genreNames.length - 1 ? ', ' : '');
         const itemWidth = tempSpan.offsetWidth;
-        
+
         if (totalWidth + itemWidth <= containerWidth) {
           totalWidth += itemWidth;
           visibleCount++;
@@ -115,7 +114,7 @@ const Anime = () => {
 
   const renderMetadataValue = (items, showBadge = false) => {
     if (!items || items.length === 0) return <div className="metadata-value">Не указано</div>;
-    
+
     const visibleCount = maxVisibleGenres > 0 ? maxVisibleGenres : items.length;
     const visibleItems = items.slice(0, visibleCount);
     const remaining = items.length - visibleCount;
@@ -332,7 +331,7 @@ const Anime = () => {
                         <span>Выбрать статус</span>
                       </>
                     )}
-                    
+
                     <motion.div
                       className="arrow-container"
                       animate={{ 
@@ -433,7 +432,7 @@ const Anime = () => {
                     : rawDescription}
                 </p>
               </div>
-              
+
               {rawDescription.length > 250 && (
                 <button
                   className="description-toggle-button"

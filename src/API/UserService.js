@@ -33,4 +33,3 @@ export const getAnimeStatus = (anime_id, token) => {
 }
 
 export const getUserDataById = (userId) => `${backendUrl}/api/user/${userId}`
-

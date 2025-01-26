@@ -118,59 +118,56 @@ const Header = () => {
 
     return (
         <header className={cls.header}>
-            {/* Логотип и строка поиска */}
-            <div className={cls.logoAndSearchContainer}>
-                <Link to="/" className={cls.logoContainer}>
-                    <Logo className={cls.logo} />
-                    <span className={cls.logoText}>AetherAnime</span>
-                </Link>
+            <div className={cls.headerWrapper}>
+                <div className={cls.logoAndSearchContainer}>
+                    <Link to="/" className={cls.logoContainer}>
+                        <Logo className={cls.logo} />
+                        <span className={cls.logoText}>AetherAnime</span>
+                    </Link>
 
-                {/* Блок поиска */}
-                <div className={cls.searchContainer} ref={searchContainerRef}>
-                    <input
-                        type="text"
-                        placeholder="Поиск аниме..."
-                        value={animeName}
-                        onChange={(e) => setAnimeName(e.target.value)}
-                        onFocus={() => setIsSearchActive(true)}
-                    />
-                    <SearchIcon className={cls.searchIcon} />
-                    {isSearchActive && animeName.length > 2 && (
-                        <div className={cls.searchResultsWrapper}>
-                            <SearchList animeName={animeName} onAnimeClick={handleAnimeClick} setAnimeName={setAnimeName} />
-                        </div>
-                    )}
+                    <div className={cls.searchContainer} ref={searchContainerRef}>
+                        <input
+                            type="text"
+                            placeholder="Поиск аниме..."
+                            value={animeName}
+                            onChange={(e) => setAnimeName(e.target.value)}
+                            onFocus={() => setIsSearchActive(true)}
+                        />
+                        <SearchIcon className={cls.searchIcon} />
+                        {isSearchActive && animeName.length > 2 && (
+                            <div className={cls.searchResultsWrapper}>
+                                <SearchList animeName={animeName} onAnimeClick={handleAnimeClick} setAnimeName={setAnimeName} />
+                            </div>
+                        )}
+                    </div>
                 </div>
+
+                <div className={cls.iconsContainer}>
+                    <Link to="/about" className={cls.iconLink}>
+                        <NotificationIcon className={cls.icon} />
+                    </Link>
+                    <Link to="/my" className={cls.iconLink}>
+                        <BookmarkIcon className={cls.icon} />
+                    </Link>
+                    <Link to="/aya" className={cls.iconLink}>
+                        <AyaIcon className={cls.icon} />
+                    </Link>
+                    <button className={cls.loginButton} onClick={handleUser}>
+                        {userData ? null : <User />}
+                        <p>{userData?.username || "Войти"}</p>
+                    </button>
+                </div>
+
+                <label className={cls.hamburgerMenu}>
+                    <input
+                        type="checkbox"
+                        checked={isMenuOpen}
+                        onChange={() => setIsMenuOpen(!isMenuOpen)}
+                    />
+                    <MenuIcon className={cls.hamburgerIcon} />
+                </label>
             </div>
 
-            {/* Основные иконки */}
-            <div className={cls.iconsContainer}>
-                <Link to="/about" className={cls.iconLink}>
-                    <NotificationIcon className={cls.icon} />
-                </Link>
-                <Link to="/my" className={cls.iconLink}>
-                    <BookmarkIcon className={cls.icon} />
-                </Link>
-                <Link to="/aya" className={cls.iconLink}>
-                    <AyaIcon className={cls.icon} />
-                </Link>
-                <button className={cls.loginButton} onClick={handleUser}>
-                    {userData ? null : <User />}
-                    <p>{userData?.username || "Войти"}</p>
-                </button>
-            </div>
-
-            {/* Гамбургер-меню */}
-            <label className={cls.hamburgerMenu}>
-                <input
-                    type="checkbox"
-                    checked={isMenuOpen}
-                    onChange={() => setIsMenuOpen(!isMenuOpen)}
-                />
-                <MenuIcon className={cls.hamburgerIcon} />
-            </label>
-
-            {/* Меню для мобильных устройств */}
             <div className={`${cls.mobileMenu} ${isMenuOpen ? cls.mobileMenuOpen : ''}`}>
                 <Link to="/" className={cls.mobileMenuItem}>
                     <HomeIcon className={cls.mobileMenuIcon} />
@@ -194,7 +191,6 @@ const Header = () => {
                 </Link>
             </div>
 
-            {/* Модальное окно */}
             {isModalOpen && (
                 <div className={cls.modalOverlay} onClick={(e) => {
                     if (e.target === e.currentTarget) setIsModalOpen(false);

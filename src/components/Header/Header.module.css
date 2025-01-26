@@ -1,11 +1,16 @@
 .header {
+    width: 100%;
+    background-color: #121212;
+    position: relative;
+}
+
+.headerWrapper {
+    max-width: 1500px;
+    margin: 0 auto;
     display: flex;
     justify-content: space-between;
     align-items: center;
     height: 3.65rem;
-    background-color: #121212;
-    color: white;
-    padding: 0 2rem;
     box-sizing: border-box;
 }
 
@@ -191,6 +196,7 @@
     height: 2em;
     width: 2em;
     transition: transform 0.3s ease;
+    stroke: white;
 }
 
 .hamburgerMenu input:checked + .hamburgerIcon {
@@ -290,7 +296,7 @@
 }
 
 @media (max-width: 768px) {
-    .header {
+    .headerWrapper {
         padding: 0 1rem;
     }
 
