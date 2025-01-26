@@ -27,6 +27,10 @@ export const getUserDataByToken = (token) =>{
     return [url, {headers: {Authorization: "Bearer " + token}}]
 }
 
+export const getAnimeStatus = (anime_id, token) => {
+    const url = `${backendUrl}/api/user/status/${anime_id}`
+    return [url, {headers: {Authorization: "Bearer " + token}}]
+}
 
 export const getUserDataById = (userId) => `${backendUrl}/api/user/${userId}`
 

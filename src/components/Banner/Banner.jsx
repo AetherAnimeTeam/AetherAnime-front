@@ -1,12 +1,13 @@
 import React from 'react';
 import cls from "./Banner.module.css";
-import { Link } from "react-router-dom";
+import {Link, useNavigate} from "react-router-dom";
 import Button from "../UI/Button/Button";
 import { ReactComponent as StarIcon } from "../../assets/icons/star_filled.svg";
 
 const Banner = () => {
     const name = "Унесённые призраками";
     const description = "Махито ищет маму в сказочном мире. Шедевр Хаяо Миядзаки, получивший «Оскар» за лучшую анимацию";
+    const navigate = useNavigate();
 
     return (
         <div className={cls.Banner}>
@@ -23,7 +24,7 @@ const Banner = () => {
                     <span className={cls.genre}>жанр</span>
                 </div>
                 <div className={cls.buttonsContainer}>
-                    <button className={cls.watchButton}>Смотреть</button>
+                    <button className={cls.watchButton} onClick={() => navigate(`/anime/199`)}>Смотреть</button>
                     <button className={cls.trailerButton}>Трейлер</button>
                 </div>
             </div>

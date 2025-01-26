@@ -1,7 +1,7 @@
 import React, { useMemo, useState, useRef, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import useSWR from "swr";
-import { getDetailed, getPopular } from "../../API/AnimeService";
+import {getDetailed, getPopular, setStatus} from "../../API/AnimeService";
 import { fetcher } from "../../API/Base";
 import { useCookies } from "react-cookie";
 import { getComments, sendComment } from "../../API/CommentService";
@@ -16,6 +16,8 @@ import "./Anime.css";
 import "./tabs.css";
 import PlayIcon from "../../assets/icons/play.svg";
 import PlusIcon from "../../assets/icons/plus.svg";
+import axios from "axios";
+import {getAnimeStatus} from "../../API/UserService";
 
 const Anime = () => {
   const params = useParams();
@@ -34,13 +36,34 @@ const Anime = () => {
   const { data: popularAnime, error: popularAnimeError } = useSWR(popularKey, fetcher);
 
   const ageRatingDict = { g: "0+", pg: "0+", pg_13: "13+", r: "17+", nc_17: "18+" };
-  const statusDict = { released: "Вышел", ongoing: "Выходит", anons: "Анонс" };
+  const statusToEnum = { "Смотрю": "watching", "Просмотрено": "completed", "В планах": "plan_to_watch",
+    "Отложено": "on_hold", "Брошено": "dropped"};
+  const enumToStatus = { "watching": "Смотрю", "completed": "Просмотрено", "plan_to_watch":  "В планах",
+    "on_hold":  "Отложено", "dropped": "Брошено"};
+
 
   const animeKey = useMemo(() => getDetailed(params["id"]), [params]);
   const commentsKey = useMemo(() => getComments(params["id"]), [params]);
 
   const { data: animeMeta, error: metaError } = useSWR(animeKey, fetcher);
   const { data: comments, error: commentsError, mutate: commentsMutate } = useSWR(commentsKey, fetcher);
+
+  useEffect(() => {
+    const _getStatus = async () => {
+      const response = await fetcher(...getAnimeStatus(params["id"], cookie["access_token"]))
+      console.log(response)
+      setSelectedStatus(enumToStatus[response["status"]])
+    }
+    _getStatus();
+  }, []);
+
+  useEffect(() => {
+    const _setStatus = async () => {
+      if (selectedStatus === "") return;
+      await setStatus(params["id"], statusToEnum[selectedStatus], cookie["access_token"]);
+    }
+    _setStatus();
+  }, [selectedStatus]);
 
   useEffect(() => {
     if (!metadataValueRef.current || !animeMeta?.genres) return;
