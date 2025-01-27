@@ -35,10 +35,10 @@ const LoginForm = ({ setCurrentStep, password, setPassword, email, setEmail, err
                 title=""
             />
             <button type="submit">Войти</button>
-            <p style={{marginBottom: "5px"}}>У меня нет аккаунта, <a className={classes.clickableText}
+            <p style={{marginTop: "1rem", marginBottom: "5px", color: "white"}}>У меня нет аккаунта, <a className={classes.clickableText}
                                                                      onClick={() => setCurrentStep('register')}>регистрация</a>
             </p>
-            <p style={{marginTop: 0}}> Восстановить <a className={classes.whiteClickableText}>пароль</a></p>
+            <p style={{marginTop: "0.5rem", color: "white"}}> Восстановить <a className={classes.whiteClickableText}>пароль</a></p>
             <div className={classes.Other_login_methods}>вход через соц. сети</div>
             <div className={classes.SocialNetworks}>
                 <GoogleLogo/>

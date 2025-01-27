@@ -198,7 +198,8 @@ const Header = () => {
                     <div className={cls.modalContent}>
                         <CloseIcon 
                             className={cls.closeIcon} 
-                            onClick={() => setIsModalOpen(false)} 
+                            onClick={() => setIsModalOpen(false)}
+                            style={{color: "white"}}
                         />
                         <h2 style={{ marginBottom: 0 }}>
                             {currentStep === 'login' && 'Вход'}

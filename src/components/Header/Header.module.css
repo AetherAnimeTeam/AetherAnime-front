@@ -1,7 +1,7 @@
 .header {
-    width: 100%;
     background-color: #121212;
     position: relative;
+    margin: 0 1.5rem;
 }
 
 .headerWrapper {
@@ -298,6 +298,10 @@
 @media (max-width: 768px) {
     .headerWrapper {
         padding: 0 1rem;
+    }
+
+    .header {
+        margin: 0 0.4rem;
     }
 
     .logoContainer {

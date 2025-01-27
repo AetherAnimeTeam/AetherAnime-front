@@ -1,27 +1,27 @@
 {
   "name": "aether_anime-front",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "private": true,
   "dependencies": {
-    "@testing-library/jest-dom": "^5.17.0",
-    "@testing-library/react": "^13.4.0",
-    "@testing-library/user-event": "^13.5.0",
-    "axios": "^1.7.7",
+    "@testing-library/jest-dom": "^6.6.3",
+    "@testing-library/react": "^14.2.1",
+    "@testing-library/user-event": "^14.6.1",
+    "axios": "^1.7.9",
     "dompurify": "^3.2.3",
-    "framer-motion": "^12.0.1",
+    "framer-motion": "^10.18.0",
     "http-server": "^14.1.1",
     "lucide-react": "^0.474.0",
-    "react": "^18.3.1",
+    "react": "^18.2.0",
     "react-cookie": "^7.2.2",
-    "react-dom": "^18.3.1",
+    "react-dom": "^18.2.0",
     "react-markdown": "^9.0.3",
     "react-player": "^2.16.0",
-    "react-router-dom": "^6.27.0",
+    "react-router-dom": "^6.22.3",
     "react-scripts": "^5.0.1",
     "remark-breaks": "^4.0.0",
     "screenfull": "^6.0.2",
-    "swr": "^2.2.5",
-    "web-vitals": "^2.1.4"
+    "swr": "^2.3.0",
+    "web-vitals": "^4.2.4"
   },
   "scripts": {
     "deploy": "npm run build && http-server --proxy http://0.0.0.0:8080? ./build",
@@ -49,6 +49,7 @@
     ]
   },
   "devDependencies": {
-    "gh-pages": "^6.2.0"
+    "@babel/plugin-proposal-private-property-in-object": "^7.21.11",
+    "gh-pages": "^6.3.0"
   }
 }

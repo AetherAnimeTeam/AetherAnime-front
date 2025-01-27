@@ -64,7 +64,7 @@ const RegisterForm = ({ setCurrentStep, password, setPassword, email, setEmail, 
                 onInvalid={() => setError(4)}
             />
             <button type="submit">Зарегистрироваться</button>
-            <p>У меня есть аккаунт, <a className={classes.clickableText}
+            <p style={{color: "white", marginTop: "0.5rem"}}>У меня есть аккаунт, <a className={classes.clickableText}
                                        onClick={() => setCurrentStep('login')}>вход</a>
             </p>
       </form>
